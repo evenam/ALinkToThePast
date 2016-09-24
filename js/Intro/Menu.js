@@ -30,7 +30,7 @@ Menu.prototype = {
 
 	startGame: function() {
 		//this.state.start('NbaJamIntro');
-		 this.state.start('PacmanIntro');
+		this.state.start('PacmanIntro');
 	}
 
 }

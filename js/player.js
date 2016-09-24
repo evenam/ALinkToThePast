@@ -12,8 +12,10 @@ Player.prototype = {
 	direction: 0,
 	game: null,
 	spaceKey: null,
+	bullets: null,
 
 	constructor: function(game, x, y) {
+		this.bullets = [];
 		this.shotTimer = 0;
 		this.enabled = true;
 		this.sprite = game.add.sprite(x, y, 'player');
@@ -69,6 +71,7 @@ Player.prototype = {
 		this.shotTimer = this.maxShotTimer;
 		var bullet = new Bullet();
 		bullet.constructor(this.game, this.sprite.body.x, this.sprite.body.y, this.direction);
+		this.bullets.push(bullet);
 	},
 
 	limitSpeed: function(val, lim) {

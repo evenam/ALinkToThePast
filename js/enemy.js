@@ -21,6 +21,7 @@ Enemy.prototype = {
 	constructor: function(game, x, y, player, type) {
 		this.sprite = game.add.sprite(x, y, 'enemy');
 		game.physics.arcade.enable(this.sprite);
+		this.sprite.ParentRef = this;
 
 		this.state = 0;
 		this.playerRef = player;
@@ -88,5 +89,15 @@ Enemy.prototype = {
 		if (this.stateTimer === 0) {
 			// TODO: shoot bullet
 		}
+	},
+
+	onHit: function(bullet, enemy) {
+		var b = bullet.ParentRef;
+		var e = enemy.ParentRef;
+
+		b.destroy();
+		e.enabled = false;
+		e.sprite.exists = false;
+		score.value += 10;
 	}
 }

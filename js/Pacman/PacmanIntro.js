@@ -43,6 +43,12 @@ PacmanIntro.prototype = {
 			game.physics.arcade.overlap(this.cherries[i].sprite, this.player.sprite, this.cherries[i].collect);
 		}
 
+		for(var bt = 0; bt < this.player.bullets.length; bt++){
+			for(var et = 0; et < this.enemies.length; et++){
+				game.physics.arcade.overlap(this.player.bullets[bt].sprite, this.enemies[et].sprite, this.enemies[et].onHit);
+			}
+		}
+
 		score.draw(400, 300);
 	}
 }

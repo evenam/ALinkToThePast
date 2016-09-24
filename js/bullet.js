@@ -4,19 +4,26 @@ Bullet.prototype = {
 	shotTimer: 0,
 	enabled: true,
 	sprite: null,
-	speed: 1000,
+	speed: 800,
 
 	constructor: function(game, x, y, direction) {
 		this.shotTimer = 0;
 		this.enabled = true;
 		this.bulletSelection(x,y);
 		game.physics.arcade.enable(this.sprite);
-		this.sprite.body.velocity.x = Math.cos(direction) * speed;
-		this.sprite.body.velocity.y = Math.sin(direction) * speed;
+		this.sprite.ParentRef = this;
+		this.sprite.checkWorldBounds= true;
+		this.sprite.body.velocity.x = Math.cos(direction) * this.speed;
+		this.sprite.body.velocity.y = Math.sin(direction) * this.speed;
 	},
 
 	update: function() {
 		if (!this.enabled) return;
+	},
+
+	destroy: function(){
+		this.enabled = false;
+		this.sprite.destroy();
 	},
 
 	bulletSelection: function(x,y) {
