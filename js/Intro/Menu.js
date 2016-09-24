@@ -18,7 +18,7 @@ Menu.prototype = {
 		game.load.image('bball_shadow', 'Assets/gfx/NBAjam_basketballshadow2.png');
 		game.load.image('door', 'Assets/gfx/door.png');
 
-		game.load.image('steve', 'Assets/gfx/steve/steve_boss.png');
+		game.load.spritesheet('steve', 'Assets/gfx/steve/steve_sprsheet.png', 160, 200, 6);
 
 		game.load.spritesheet('gabe', 'Assets/gfx/gabenewell_spritesheet.png', 61, 115, 6);
 		game.load.spritesheet('bbdefender', 'Assets/gfx/basketballplayer_spritesheet.png', 58, 112, 3);
