@@ -18,6 +18,7 @@ Menu.prototype = {
 		game.load.image('bball_shadow', 'Assets/gfx/NBAjam_basketballshadow2.png');
 		game.load.image('door', 'Assets/gfx/door.png');
 
+		game.load.image('steve', 'Assets/gfx/steve/steve_boss.png');
 
 		game.load.spritesheet('gabe', 'Assets/gfx/gabenewell_spritesheet.png', 61, 115, 6);
 		game.load.spritesheet('bbdefender', 'Assets/gfx/basketballplayer_spritesheet.png', 58, 112, 3);
@@ -29,6 +30,9 @@ Menu.prototype = {
 
 		// default enemy
 		game.load.image('enemy', 'Assets/gfx/monster.png');
+
+		//game.load.image('SteveLazer', 'Assets/gfx/steve/lazer.png');
+		game.load.image('WindowsBullet', 'Assets/gfx/steve/steve_windowsbullest.png');
 	},
 
 	create: function() {
@@ -38,10 +42,8 @@ Menu.prototype = {
 	},
 
 	startGame: function() {
-		// this.state.start('NbaJamIntro');
-		this.state.start('PacmanIntro');
-		// this.state.start('NbaJamSpecial');
-
+		this.state.start('SteveStage');
+		//this.state.start('PacmanIntro');
 	}
 
 }

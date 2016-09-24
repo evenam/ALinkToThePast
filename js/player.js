@@ -7,7 +7,7 @@ Player.prototype = {
 	keys: null,
 	maxVel: 300,
 	accel: 100,
-	maxShotTimer: 10,
+	maxShotTimer: 30,
 	speed: 0,
 	direction: 0,
 	game: null,
