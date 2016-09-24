@@ -1,8 +1,6 @@
 var Player = function(){}
 
 Player.prototype = {
-	hspeed: 0,
-	vspeed: 0,
 	shotTimer: 0,
 	enabled: true,
 	sprite: null,
@@ -19,15 +17,15 @@ Player.prototype = {
 	update: function() {
 		if (!this.enabled) return;
 
-		if (this.keys.left.isDown) this.body.velocity.x  -= 5;
-		if (this.keys.right.isDown) this.body.velocity.x  += 5;
-		if (this.keys.up.isDown) this.body.velocity.y -= 5;
-		if (this.keys.down.isDown) this.body.velocity.y += 5;
+		if (this.keys.left.isDown) this.sprite.body.velocity.x  -= 5;
+		if (this.keys.right.isDown) this.sprite.body.velocity.x  += 5;
+		if (this.keys.up.isDown) this.sprite.body.velocity.y -= 5;
+		if (this.keys.down.isDown) this.sprite.body.velocity.y += 5;
 
-		this.body.velocity.x = Math.min(this.body.velocity.x,  50);
-		this.body.velocity.x = Math.max(this.body.velocity.x, -50);
-		this.body.velocity.y = Math.min(this.body.velocity.y,  50);
-		this.body.velocity.y = Math.max(this.body.velocity.y, -50);
+		this.sprite.body.velocity.x = Math.min(this.sprite.body.velocity.x,  50);
+		this.sprite.body.velocity.x = Math.max(this.sprite.body.velocity.x, -50);
+		this.sprite.body.velocity.y = Math.min(this.sprite.body.velocity.y,  50);
+		this.sprite.body.velocity.y = Math.max(this.sprite.body.velocity.y, -50);
 	},
 
 	shoot: function() {
