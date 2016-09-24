@@ -74,10 +74,11 @@ NbaJamSpecial.prototype = {
 			this.ball.sprite.bringToTop();
 			this.ball.update();
 		}
-
+/*
 		objects = [...this.defenders, this.player];
 		if (this.ball !== null) objects.push(this.ball);
 		objects.sort((a, b) => a.sprite.body.y - b.sprite.body.y);
 		objects.forEach(e => e.sprite.bringToTop());
+		*/
 	}
 }
