@@ -12,15 +12,18 @@ Menu.prototype = {
 
 		//Projectile
 		game.load.image('bullet', 'Assets/gfx/projectile.png');
+
+		game.load.image('cherry', 'Assets/gfx/cherry_pac-man.png');
 	},
 
 	create: function() {		
 		var button = this.add.button(0, 0, 'bg', this.startGame, this);
 		button.scale.setTo(800 / 3507, 600 / 2550);
+		game.physics.startSystem(Phaser.Physics.ARCADE);
 	},
 
 	startGame: function() {
-		this.state.start('TetrisIntro');
+		this.state.start('PacmanIntro');
 	}
 
 }
