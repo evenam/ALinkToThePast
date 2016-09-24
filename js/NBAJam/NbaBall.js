@@ -60,9 +60,6 @@ NbaBall.prototype = {
 		var pt = this.bezier(p0, p1, p2, this.pathIndex);
 		this.sprite.body.x = pt.x;
 		this.sprite.body.y = pt.y;
-		console.log(p0);
-		console.log(p1);
-		console.log(p2);
 
 		if (this.pathIndex > 1) {
 			this.sprite.destroy();
