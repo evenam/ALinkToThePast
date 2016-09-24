@@ -11,15 +11,12 @@ Player.prototype = {
 	speed: 0,
 	direction: 0,
 	game: null,
-<<<<<<< HEAD
 	spaceKey: null,
 	bullets: null,
-=======
 	wKey: null,
 	aKey: null,
 	sKey: null,
 	dKey: null,
->>>>>>> b7a9697bf65a5f23a4c98f40b99ebc2371f4442b
 
 	constructor: function(game, x, y) {
 		this.bullets = [];
