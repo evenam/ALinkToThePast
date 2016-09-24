@@ -12,7 +12,7 @@ PacmanIntro.prototype = {
 	create: function() {
 		//Sets up the walls
 
-
+		this.test = false;
 		this.walls = game.add.group();
 		this.walls.enableBody = true;
 
