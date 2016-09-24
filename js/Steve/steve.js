@@ -86,6 +86,7 @@ Steve.prototype = {
 	player: null,
   bullet: null,
   direction: 1,
+  animRef: null,
 
 	constructor: function(game, player) {
 		this.state = 0;
@@ -98,6 +99,12 @@ Steve.prototype = {
     this.sprite.body.setSize(80, 160, 40, 20);
     this.sprite.anchor.setTo(.5, .5);
     this.generateNormalObject();
+
+    this.sprite.animations.add('idle', [0], 4, true);
+    this.sprite.animations.add('windows', [1, 2, 3, 2, 1, 0], 8, false);
+    this.sprite.animations.add('tell', [4], 6, false);
+    this.sprite.animations.add('zap', [5, 4, 5, 4], 2, false);
+    this.animRef = this.sprite.animations.play('windows');
 	},
 
 	update: function() {
@@ -121,13 +128,23 @@ Steve.prototype = {
 	},
 
 	updateFling: function() {
-		// fling windows and bail
-		this.generateNormalObject();
-    this.state = 0;
+    if (this.sprite.body.x > 680) this.direction *= -1;
+    if (this.sprite.body.x < 040) this.direction *= -1;
+    this.sprite.body.velocity.x = 100 * this.direction;
+    console.log(this.animRef.isPlaying)
 
-    this.bullet = new EnemyBullet();
-    this.bullet.constructor(this.game, this.sprite.body.x + 40, this.sprite.body.y + 130, Math.PI / 2, 'WindowsBullet');
-	},
+
+    if (this.sprite.animations.frame === 3 && this.bullet === null) {
+      this.bullet = new EnemyBullet();
+      this.bullet.constructor(this.game, this.sprite.body.x + 40, this.sprite.body.y + 130, Math.PI / 2, 'WindowsBullet');
+	  } else if (!this.sprite.animations.frame === 0) {
+      this.state = 0;
+      this.generateNormalObject();
+      this.sprite.aniumations.play('idle');
+    }
+    if (!this.animRef.isPlaying)
+      this.animRef = this.sprite.animations.play('idle');
+  },
 
 	updateLazerTell: function() {
 		// play tell aniumation
