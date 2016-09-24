@@ -4,15 +4,32 @@ NbaJamSpecial.prototype = {
 	defenders: null,
 	ball: null,
 	player: null,
+	walls: null,
 
 	preload: function() {
 		
 	},
 
 	create: function() {
+		
+		this.walls = game.add.group();
+		this.walls.enableBody = true;	
+
+		var w1 = this.walls.create(0, 0, 'topwall');
+		w1.body.immovable = true;
+		game.physics.arcade.enable(w1);
+		var w2 = this.walls.create(0, 600-40, 'topwall');
+		w2.body.immovable = true;
+
+		for(var i = 0; i < 2; i++){
+			var w3 = this.walls.create(i*(800-40), 40, 'sidewall');
+			w3.body.immovable = true;
+			var w4 = this.walls.create(i*(800-40), 600 - 40 - 220, 'sidewall');
+			w4.body.immovable = true;
+		}
+
 		game.add.image(0, 0, 'BasketBallCourt');
 		game.add.image(760, 280, 'BasketBallHoop');
-
 		this.player = new NbaPlayer();
 		this.player.constructor(game, 100, 100);
 
@@ -40,6 +57,7 @@ NbaJamSpecial.prototype = {
 	},
 
 	update: function() {
+		game.physics.arcade.collide(this.player.sprite, this.walls);
 		for (var i = 0; i < this.defenders.length; i++) {
 			this.defenders[i].update();
 		}
