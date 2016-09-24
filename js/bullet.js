@@ -11,8 +11,8 @@ Bullet.prototype = {
 		this.enabled = true;
 		this.bulletSelection(x,y);
 		game.physics.arcade.enable(this.sprite);
-		this.sprite.body.velocity.x = Math.cos(direction) * speed;
-		this.sprite.body.velocity.y = Math.sin(direction) * speed;
+		this.sprite.body.velocity.x = Math.cos(direction) * this.speed;
+		this.sprite.body.velocity.y = Math.sin(direction) * this.speed;
 	},
 
 	update: function() {

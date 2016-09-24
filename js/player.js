@@ -7,11 +7,14 @@ Player.prototype = {
 	keys: null,
 	maxVel: 300,
 	accel: 100,
-	maxShotTimer: 20,
+	maxShotTimer: 10,
 	speed: 0,
 	direction: 0,
 	game: null,
-	spaceKey: null,
+	wKey: null,
+	aKey: null,
+	sKey: null,
+	dKey: null,
 
 	constructor: function(game, x, y) {
 		this.shotTimer = 0;
@@ -22,7 +25,10 @@ Player.prototype = {
 		this.sprite.body.velocity.x = 0;
 		this.sprite.body.velocity.y = 0;
 		this.game = game;
-		this.spaceKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+		this.wKey = game.input.keyboard.addKey(Phaser.Keyboard.W);
+		this.aKey = game.input.keyboard.addKey(Phaser.Keyboard.A);
+		this.sKey = game.input.keyboard.addKey(Phaser.Keyboard.S);
+		this.dKey = game.input.keyboard.addKey(Phaser.Keyboard.D);
 	},
 
 	update: function() {
@@ -58,7 +64,7 @@ Player.prototype = {
 			this.shotTimer --;
 		if (this.shotTimer < 0) 
 			this.shotTimer = 0;
-		if (this.shotTimer === 0 && this.spaceKey.isDown) {
+		if (this.shotTimer === 0 && (this.wKey.isDown || this.aKey.isDown || this.sKey.isDown || this.dKey.isDown)) {
 			this.shoot();
 		}
 	},
@@ -66,9 +72,18 @@ Player.prototype = {
 	shoot: function() {
 		if (!this.enabled) return;
 
+		var diffX = 0, diffY = 0, dir;
+		if (this.wKey.isDown) diffY -= 1;
+		if (this.aKey.isDown) diffX -= 1;
+		if (this.sKey.isDown) diffY += 1;
+		if (this.dKey.isDown) diffX += 1;
+
+		if (diffX === 0 && diffY === 0) return;
+		dir = Math.atan2(diffY, diffX);
+
 		this.shotTimer = this.maxShotTimer;
 		var bullet = new Bullet();
-		bullet.constructor(this.game, this.sprite.body.x, this.sprite.body.y, this.direction);
+		bullet.constructor(this.game, this.sprite.body.x, this.sprite.body.y, dir);
 	},
 
 	limitSpeed: function(val, lim) {

@@ -13,9 +13,7 @@ Enemy.prototype = {
 	type: 0,
 
 	// 0 - walk
-	// 1 - pause
-	// 2 - shoot
-    // 3 - pause
+	// 1 - shoot
 	state: 0,
 
 	constructor: function(game, x, y, player, type) {
@@ -60,8 +58,8 @@ Enemy.prototype = {
 			this.sprite.body.velocity.x = 0;
 			this.sprite.body.velocity.y = 0;
 			
-			var speedRatio = 0.5;
-			var maxRatio = 1.5;
+			var speedRatio = 0.7;
+			var maxRatio = 1.3;
 			var speedDiff = (speedRatio + Math.random() * (maxRatio - speedRatio));
 			if (Math.abs(diffX) > Math.abs(diffY)) {
 				if (diffX < 0) 
