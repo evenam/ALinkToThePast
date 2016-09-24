@@ -17,6 +17,9 @@ Menu.prototype = {
 		game.load.image('bullet', 'Assets/gfx/projectile.png');
 
 		game.load.image('cherry', 'Assets/gfx/cherry_pac-man.png');
+
+		// default enemy
+		game.load.image('enemy', 'Assets/gfx/monster.png');
 	},
 
 	create: function() {

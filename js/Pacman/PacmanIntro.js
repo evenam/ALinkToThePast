@@ -3,6 +3,7 @@ var PacmanIntro = function() {};
 PacmanIntro.prototype = {
 	player: null,
 	cherries: null,
+	enemies: null,
 
 	preload: function() {
 
@@ -22,10 +23,21 @@ PacmanIntro.prototype = {
 
 		this.player = new Player();
 		this.player.constructor(game, 100, 100);
+
+		this.enemies = [];
+
+		for(var i = 0; i < 1; i++){
+			var en = new Enemy();
+			en.constructor(game, 50 + i*100, 50 + i*100, this.player, 1);
+			this.enemies.push(en);
+		}
 	},
 
 	update: function() {
 		this.player.update();
+
+		for (var i = 0; i < this.enemies.length; i++) 
+			this.enemies[i].update();
 
 		for(var i = 0; i < 3; i++){
 			game.physics.arcade.overlap(this.cherries[i].sprite, this.player.sprite, this.cherries[i].collect);

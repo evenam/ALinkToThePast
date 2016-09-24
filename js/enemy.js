@@ -6,7 +6,7 @@ Enemy.prototype = {
 	sprite: null,
 	playerRef: null,
 	stateTimer: 0,
-	speed: 100,
+	speed: 0,
 
 	// 0 - shooter
 	// 1 - walker
@@ -27,7 +27,7 @@ Enemy.prototype = {
 		this.type = type;
 		this.enabled = true;
 		if (type === 1) 
-			this.speed = 150;	 
+			this.speed = 300;	 
 		else 
 			this.speed = 100;	
 	},
@@ -59,7 +59,8 @@ Enemy.prototype = {
 		var diffY = this.playerRef.sprite.body.y - this.sprite.body.y;
 		var diffX = this.playerRef.sprite.body.x - this.sprite.body.x;
 
-		console.log(diffX);
+		this.sprite.body.velocity.x = 0;
+		this.sprite.body.velocity.y = 0;
 
 		if (Math.abs(diffX) > Math.abs(diffY)) {
 			if (diffX < 0) 
