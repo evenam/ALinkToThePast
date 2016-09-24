@@ -10,8 +10,8 @@ Player.prototype = {
 		this.shotTimer = 0;
 		this.enabled = true;
 		this.sprite = game.add.sprite(x, y, 'player');
-		this.keys = this.game.input.keyboard.createCursorKeys();
-		this.game.physics.arcade.enable(this.sprite);
+		this.keys = game.input.keyboard.createCursorKeys();
+		game.physics.arcade.enable(this.sprite);
 	},
 
 	update: function() {
