@@ -96,6 +96,8 @@ Enemy.prototype = {
 		b.destroy();
 		e.enabled = false;
 		e.sprite.exists = false;
-		score.value += 10;
+		var ch = new Collectable();
+		ch.constructor(e.sprite.x, e.sprite.y, 10, 'cherry');
+		game.state.getCurrentState().cherries.push(ch);
 	}
 }

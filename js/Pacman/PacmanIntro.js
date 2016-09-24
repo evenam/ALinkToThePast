@@ -39,7 +39,7 @@ PacmanIntro.prototype = {
 		for (var i = 0; i < this.enemies.length; i++) 
 			this.enemies[i].update();
 
-		for(var i = 0; i < 3; i++){
+		for(var i = 0; i < this.cherries.length; i++){
 			game.physics.arcade.overlap(this.cherries[i].sprite, this.player.sprite, this.cherries[i].collect);
 		}
 
