@@ -25,6 +25,7 @@ Player.prototype = {
 		this.sprite = game.add.sprite(x, y, 'player');
 		this.keys = game.input.keyboard.createCursorKeys();
 		game.physics.arcade.enable(this.sprite);
+		this.sprite.body.collideWorldBounds = true;
 		this.sprite.body.velocity.x = 0;
 		this.sprite.body.velocity.y = 0;
 		this.game = game;
