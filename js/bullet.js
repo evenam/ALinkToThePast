@@ -29,7 +29,7 @@ Bullet.prototype = {
 	bulletSelection: function(x,y) {
 		if (game.state.current === 'NbaJamIntro'){
 			this.sprite = game.add.sprite(x, y, 'BasketBullet');
-			this.sprite.scale.set(3,3);
+			this.sprite.scale.set(0.75, 0.75);
 			return;
 		}
 		this.sprite = game.add.sprite(x,y,'bullet');

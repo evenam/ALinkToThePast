@@ -11,10 +11,10 @@ PacmanIntro.prototype = {
 
 	create: function() {
 		//Sets up the walls
-		
+
 
 		this.walls = game.add.group();
-		this.walls.enableBody = true;	
+		this.walls.enableBody = true;
 
 		var w1 = this.walls.create(0, 0, 'topwall');
 		w1.body.immovable = true;
@@ -29,7 +29,7 @@ PacmanIntro.prototype = {
 			w4.body.immovable = true;
 		}
 		this.add.image(0, 0, "PacmanIntroBg");
-		this.add.text(10, 10, "PacmanIntro", {font: '30px Helvetica', fill: '#ffffff'});
+		// this.add.text(10, 10, "PacmanIntro", {font: '30px Helvetica', fill: '#ffffff'});
 
 
 		this.cherries = [];
@@ -51,6 +51,8 @@ PacmanIntro.prototype = {
 			this.enemies.push(en);
 			en.sprite.z = 1;
 		}
+
+		score.constructor();
 	},
 
 	update: function() {
@@ -73,6 +75,6 @@ PacmanIntro.prototype = {
 			}
 		}
 
-		score.draw(400, 300);
+		score.draw(30, 30);
 	}
 }

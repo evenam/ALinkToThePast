@@ -19,3 +19,4 @@ game.state.add('PacmanIntro', PacmanIntro);
 // game.state.add('GameOver', GameOver);
 // game.state.add('ShadyTree', ShadyTree);
 game.state.start('Menu');
+score.constructor();
