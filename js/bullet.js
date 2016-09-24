@@ -24,7 +24,6 @@ Bullet.prototype = {
 	destroy: function(){
 		this.enabled = false;
 		this.sprite.destroy(); // for testing purposes.
-		score.loseHealth();
 	},
 
 	bulletSelection: function(x,y) {

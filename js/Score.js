@@ -8,7 +8,7 @@ Score.prototype = {
 	healthArray: null,
 
 
-	constructor() {
+	constructor: function() {
 		this.healthText = game.add.text(30,70, 'Health:',
 			{font: '23px Helvetica', fill: '#ffffff', fontVariant:'small-caps'});
 		this.health = 3;

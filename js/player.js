@@ -25,8 +25,9 @@ Player.prototype = {
 		this.enabled = true;
 		this.sprite = game.add.sprite(x, y, 'gabe');
 		this.keys = game.input.keyboard.createCursorKeys();
-		this.sprite.anchor.setTo(0.5, 0.5);
 		game.physics.arcade.enable(this.sprite);
+		this.sprite.body.setSize(40, 40, (61-40)/2, (116-40));
+		this.sprite.anchor.setTo(0.5, 0.5);
 		this.sprite.body.collideWorldBounds = true;
 		this.sprite.body.velocity.x = 0;
 		this.sprite.body.velocity.y = 0;
@@ -111,7 +112,7 @@ Player.prototype = {
 
 		this.shotTimer = this.maxShotTimer;
 		var bullet = new Bullet();
-		bullet.constructor(this.game, this.sprite.body.x, this.sprite.body.y, dir);
+		bullet.constructor(this.game, this.sprite.x, this.sprite.y, dir);
 		this.bullets.push(bullet);
 	},
 

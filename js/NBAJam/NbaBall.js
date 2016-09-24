@@ -47,9 +47,9 @@ NbaBall.prototype = {
 		this.sprite.body.x = pt.x;
 		this.sprite.body.y = pt.y;
 
-		var slope = (this.initY - this.destY) / (this.initX - this.destX);
+		var slope = (this.initY+75 - this.destY) / (this.initX - this.destX);
 		var lineX = pt.x;
-		var lineY = slope * (pt.x - this.initX) + this.initY;
+		var lineY = slope * (pt.x - this.initX) + this.initY + 115;
 
 		this.ballSprite.body.x = lineX + 4;
 		this.ballSprite.body.y = lineY;

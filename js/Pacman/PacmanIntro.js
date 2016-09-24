@@ -47,9 +47,8 @@ PacmanIntro.prototype = {
 
 		for(var i = 0; i < 5; i++){
 			var en = new Enemy();
-			en.constructor(game, 50 + Math.floor(Math.random() * 400), 50 + Math.floor(Math.random() * 400), this.player, 1);
+			en.constructor(game, 350 + Math.floor(Math.random() * 400), 150 + Math.floor(Math.random() * 400), this.player, 1);
 			this.enemies.push(en);
-			en.sprite.z = 1;
 		}
 
 		score.constructor();
@@ -60,6 +59,7 @@ PacmanIntro.prototype = {
 		game.physics.arcade.collide(this.player.sprite, this.walls);
 
 		for (var i = 0; i < this.enemies.length; i++){
+			game.physics.arcade.collide(this.enemies[i].sprite, this.walls);
 			this.enemies[i].update();
 			this.enemies[i].sprite.bringToTop();
 		}

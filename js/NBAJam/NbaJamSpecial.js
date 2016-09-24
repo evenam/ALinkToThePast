@@ -11,7 +11,7 @@ NbaJamSpecial.prototype = {
 	},
 
 	create: function() {
-		
+
 		this.walls = game.add.group();
 		this.walls.enableBody = true;	
 
@@ -58,13 +58,17 @@ NbaJamSpecial.prototype = {
 
 	update: function() {
 		game.physics.arcade.collide(this.player.sprite, this.walls);
+		this.player.update();
 		for (var i = 0; i < this.defenders.length; i++) {
 			this.defenders[i].update();
+			this.defenders[i].sprite.bringToTop();
 		}
 
-		this.player.update();
+		this.player.sprite.bringToTop();
 
-		if (this.ball)
+		if (this.ball){
+			this.ball.sprite.bringToTop();
 			this.ball.update();
+		}
 	}
 }

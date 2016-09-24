@@ -19,6 +19,7 @@ Menu.prototype = {
 
 
 		game.load.spritesheet('gabe', 'Assets/gfx/gabenewell_spritesheet.png', 61, 115, 6);
+		game.load.spritesheet('bbdefender', 'Assets/gfx/basketballplayer_spritesheet.png', 58, 112, 3);
 
 		//Projectile
 		game.load.image('bullet', 'Assets/gfx/projectile.png');
@@ -39,6 +40,7 @@ Menu.prototype = {
 		// this.state.start('NbaJamIntro');
 		this.state.start('PacmanIntro');
 		// this.state.start('NbaJamSpecial');
+
 	}
 
 }
