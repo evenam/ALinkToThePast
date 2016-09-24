@@ -5,6 +5,7 @@ PacmanIntro.prototype = {
 	cherries: null,
 	enemies: null,
 	walls: null,
+	door: null,
 
 	preload: function() {
 	},
@@ -39,6 +40,9 @@ PacmanIntro.prototype = {
 			ch.constructor(30 + i*100, 30 + i*100, 10, 'cherry');
 			this.cherries.push(ch);
 		}
+
+		this.door = game.add.sprite(800-80, 260, 'door');
+		this.door.scale.setTo(2, 2);
 
 		this.player = new Player();
 		this.player.constructor(game, 100, 100);
@@ -76,5 +80,9 @@ PacmanIntro.prototype = {
 		}
 
 		score.draw(30, 30);
+
+		if(this.player.sprite.body.x > 780){
+			game.state.start('NbaJamSpecial');
+		}
 	}
 }

@@ -28,7 +28,6 @@ Player.prototype = {
 		game.physics.arcade.enable(this.sprite);
 		this.sprite.body.setSize(40, 40, (61-40)/2, (116-40));
 		this.sprite.anchor.setTo(0.5, 0.5);
-		this.sprite.body.collideWorldBounds = true;
 		this.sprite.body.velocity.x = 0;
 		this.sprite.body.velocity.y = 0;
 		this.game = game;

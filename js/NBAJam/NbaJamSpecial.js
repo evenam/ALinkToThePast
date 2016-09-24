@@ -24,6 +24,10 @@ NbaJamSpecial.prototype = {
 		for(var i = 0; i < 2; i++){
 			var w3 = this.walls.create(i*(800-40), 40, 'sidewall');
 			w3.body.immovable = true;
+			if(i != 1){
+				var w5 = this.walls.create(i*(800-40), 80+220, 'sidewall');
+				w5.body.immovable = true;
+			}
 			var w4 = this.walls.create(i*(800-40), 600 - 40 - 220, 'sidewall');
 			w4.body.immovable = true;
 		}
@@ -31,7 +35,7 @@ NbaJamSpecial.prototype = {
 		game.add.image(0, 0, 'BasketBallCourt');
 		game.add.image(760, 280, 'BasketBallHoop');
 		this.player = new NbaPlayer();
-		this.player.constructor(game, 100, 100);
+		this.player.constructor(game, 60, 260);
 
 		var defender1 = new NbaDefender();
 		var defender2 = new NbaDefender();

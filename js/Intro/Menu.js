@@ -16,6 +16,7 @@ Menu.prototype = {
 		game.load.image('sidewall', 'Assets/gfx/40x220 black.png');
 		game.load.image('life', 'Assets/gfx/life.png');
 		game.load.image('bball_shadow', 'Assets/gfx/NBAjam_basketballshadow2.png');
+		game.load.image('door', 'Assets/gfx/door.png');
 
 
 		game.load.spritesheet('gabe', 'Assets/gfx/gabenewell_spritesheet.png', 61, 115, 6);
