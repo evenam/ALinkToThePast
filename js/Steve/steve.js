@@ -72,7 +72,6 @@ var Steve = function(){};
 
 Steve.prototype = {
 
-
 	// 0 - normal
 	// 1 - fling windows
 	// 2 - charge lazer
@@ -85,20 +84,38 @@ Steve.prototype = {
 
 	game: null,
 	player: null,
+  bullet: null,
+  direction: 1,
 
 	constructor: function(game, player) {
 		this.state = 0;
 
 		this.game = game;
 		this.player = player;
+
+    this.sprite = game.add.sprite(400, 120, 'steve');
+    game.physics.arcade.enable(this.sprite);
+    this.sprite.body.setSize(80, 160, 40, 20);
+    this.sprite.anchor.setTo(.5, .5);
+    this.generateNormalObject();
 	},
 
 	update: function() {
+    console.log(this.state);
+         if (this.state == 0) this.updateNormal();
+    else if (this.state == 1) this.updateFling();
+    else if (this.state == 2) this.updateLazerTell();
+    else if (this.state == 3) this.updateLazer();
+
+    if (this.bullet) this.bullet.update();
 
 	},
 
 	updateNormal: function() {
 		this.normal.current ++;
+    if (this.sprite.body.x > 680) this.direction *= -1;
+    if (this.sprite.body.x < 040) this.direction *= -1;
+    this.sprite.body.velocity.x = 100 * this.direction;
 		if (this.normal.current >= this.normal.timer)
 			this.state = this.normal.nextStage;
 	},
@@ -106,7 +123,10 @@ Steve.prototype = {
 	updateFling: function() {
 		// fling windows and bail
 		this.generateNormalObject();
+    this.state = 0;
 
+    this.bullet = new EnemyBullet();
+    this.bullet.constructor(this.game, this.sprite.body.x + 40, this.sprite.body.y + 130, Math.PI / 2, 'WindowsBullet');
 	},
 
 	updateLazerTell: function() {
@@ -125,30 +145,9 @@ Steve.prototype = {
 
 	generateNormalObject: function() {
 		this.normal = {
-			nextStage: (Math.random() > .33 ? 1 : 2),
+			nextStage: 1,//(Math.random() > .33 ? 1 : 2),
 			current: 0,
 			timer: 120
 		}
 	}
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
