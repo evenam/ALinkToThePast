@@ -43,11 +43,11 @@ NbaJamSpecial.prototype = {
 		var defender4 = new NbaDefender();
 		var defender5 = new NbaDefender();
 
-		defender1.constructor(game, 626, 168);
-		defender2.constructor(game, 548, 208);
-		defender3.constructor(game, 468, 288);
-		defender4.constructor(game, 548, 368);
-		defender5.constructor(game, 626, 408);
+		defender1.constructor(game, 626 + 0, 168);
+		defender2.constructor(game, 548 + 160, 208);
+		defender3.constructor(game, 468 + 160, 288);
+		defender4.constructor(game, 548 + 160, 368);
+		defender5.constructor(game, 626 + 0, 408);
 
 		this.defenders = [
 			defender1,
@@ -74,5 +74,10 @@ NbaJamSpecial.prototype = {
 			this.ball.sprite.bringToTop();
 			this.ball.update();
 		}
+
+		objects = [...this.defenders, this.player];
+		if (this.ball !== null) objects.push(this.ball);
+		objects.sort((a, b) => a.sprite.body.y - b.sprite.body.y);
+		objects.forEach(e => e.sprite.bringToTop());
 	}
 }

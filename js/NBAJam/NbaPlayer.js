@@ -102,7 +102,7 @@ NbaPlayer.prototype = {
 			this.shootAnim = this.sprite.animations.play('bball');
 			this.sprite.scale.setTo(1,1);
 			var ball = new NbaBall();
-			ball.constructor(this.game, this.sprite.x+20, this.sprite.y-60, 778 , 280);
+			ball.constructor(this.game, this.sprite.x+20, this.sprite.y-60, 770 , 280);
 			this.game.state.getCurrentState().ball = ball;
 			this.shoot = 30;
 		}
