@@ -9,17 +9,12 @@ Bullet.prototype = {
 		this.shotTimer = 0;
 		this.enabled = true;
 		this.sprite = game.add.sprite(x, y, 'bullet');
-		this.game.physics.arcade.enable(this.sprite);
-		this.sprite.body.velocity.x =  Math.cos(direction * Math.PI / 180) * 20;
-		this.sprite.body.velocity.y = -Math.sin(direction * Math.PI / 180) * 20;
+		game.physics.arcade.enable(this.sprite);
+		this.sprite.body.velocity.x = Math.cos(direction) * 1000;
+		this.sprite.body.velocity.y = Math.sin(direction) * 1000;
 	},
 
 	update: function() {
 		if (!this.enabled) return;
-	},
-
-	shoot: function() {
-		if (!this.enabled) return;
-		//TBD
 	}
 }
