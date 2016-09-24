@@ -17,6 +17,10 @@ SteveStage.prototype = {
 	},
 
 	update: function() {
+
+		for(var bt = 0; bt < this.player.bullets.length; bt++){
+			game.physics.arcade.overlap(this.player.bullets[bt].sprite, this.steve.sprite, this.steve.onHit);
+		}
 		this.player.update();
 		this.steve.update();
 	}

@@ -86,7 +86,7 @@ Steve.prototype = {
 	player: null,
   bullet: null,
   direction: 1,
-  animRef: null,
+  openMouthAnim: null,
 
 	constructor: function(game, player) {
 		this.state = 0;
@@ -101,14 +101,14 @@ Steve.prototype = {
     this.generateNormalObject();
 
     this.sprite.animations.add('idle', [0], 4, true);
-    this.sprite.animations.add('windows', [1, 2, 3, 2, 1, 0], 8, false);
+    this.sprite.animations.add('openMouth', [1, 2, 3], 8, false);
+    this.sprite.animations.add('closeMouth', [2, 1, 0], 8, false);
     this.sprite.animations.add('tell', [4], 6, false);
     this.sprite.animations.add('zap', [5, 4, 5, 4], 2, false);
-    this.animRef = this.sprite.animations.play('windows');
+    this.sprite.animations.add('hurt', [5], 2, false);
 	},
 
 	update: function() {
-    console.log(this.state);
          if (this.state == 0) this.updateNormal();
     else if (this.state == 1) this.updateFling();
     else if (this.state == 2) this.updateLazerTell();
@@ -131,19 +131,21 @@ Steve.prototype = {
     if (this.sprite.body.x > 680) this.direction *= -1;
     if (this.sprite.body.x < 040) this.direction *= -1;
     this.sprite.body.velocity.x = 100 * this.direction;
-    console.log(this.animRef.isPlaying)
 
-
-    if (this.sprite.animations.frame === 3 && this.bullet === null) {
+    if (this.bullet === null && (this.openMouthAnim === null)) {
+      this.openMouthAnim = this.sprite.animations.play('openMouth');
+	  } else if(this.bullet === null && !this.openMouthAnim.isPlaying){
       this.bullet = new EnemyBullet();
       this.bullet.constructor(this.game, this.sprite.body.x + 40, this.sprite.body.y + 130, Math.PI / 2, 'WindowsBullet');
-	  } else if (!this.sprite.animations.frame === 0) {
-      this.state = 0;
+      this.sprite.animations.play('closeMouth');
+      this.openMouthAnim = null;
       this.generateNormalObject();
-      this.sprite.aniumations.play('idle');
+      this.state = 0;
+
+      this.bullet.sprite.events.onOutOfBounds.addOnce(function(){
+        this.bullet = null;
+      }, this)
     }
-    if (!this.animRef.isPlaying)
-      this.animRef = this.sprite.animations.play('idle');
   },
 
 	updateLazerTell: function() {
@@ -166,5 +168,14 @@ Steve.prototype = {
 			current: 0,
 			timer: 120
 		}
-	}
+	},
+
+  onHit: function(bullet, me){
+    me.animations.play('hurt');
+    //deduct his health
+
+    var b = bullet.ParentRef;    
+    b.destroy();
+    
+  }
 };
