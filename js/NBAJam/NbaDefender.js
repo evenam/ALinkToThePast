@@ -24,15 +24,13 @@ NbaDefender.prototype = {
 
 		if (this.game.state.getCurrentState().ball !== null) {
 			var ball = this.game.state.getCurrentState().ball;
-			if (this.pointDistance2(ball.sprite.body.x, ball.sprite.body.y) < 40) {
-				ball.sprite.destroy();
-				this.game.state.getCurrentState().ball = null;
-			}
+			game.physics.arcade.overlap(ball.ballSprite, this.sprite, (function(ball, me){
+				return function() {
+					if (ball.height < 100)
+						ball.removeBall();
+				}
+			})(ball, this));
 		}
-	},
-
-	pointDistance2: function(otherx, othery) {
-		return (this.sprite.body.x - otherx) * (this.sprite.body.x - otherx) + (this.sprite.body.y - othery) *(this.sprite.body.y - othery);
 	}
 
 }

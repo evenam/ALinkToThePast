@@ -10,6 +10,7 @@ NbaBall.prototype = {
 	pathIndex: 0,
 	pathSpeed: 0,
 	sprite: null,
+	ballSprite: null,
 	game: null,
 
 	constructor: function(game, x, y, destX, destY) {
@@ -26,30 +27,14 @@ NbaBall.prototype = {
 		this.sprite.scale.setTo(0.6, 0.6);
 		game.physics.arcade.enable(this.sprite);
 
+		this.ballSprite = game.add.sprite(x, y, 'bball_shadow');
+		game.physics.arcade.enable(this.ballSprite);
+
 		this.game = game;
 	},
 
 	update: function() {
 		this.pathIndex += 1.0 / 90.0;
-
-		/*
-
-		var slope = (this.initY - this.destY) / (this.initX - this.destX);
-		var lineX = this.initX + this.pathIndex;
-		var lineY = this.initY + this.pathIndex * slope;
-
-		var sineVal = Math.sin(Math.PI * this.pathIndex / this.pathLength);
-		var curveY = -sineVal * 150;
-
-		this.sprite.body.x = lineX;
-		this.sprite.body.y = lineY + curveY;
-
-		if (this.sprite.body.x > 800) {
-			this.sprite.destroy();
-			this.game.state.getCurrentState().ball = null;
-		}
-
-		*/
 
 		var averageX = (this.destX + this.initX) / 2;
 		var averageY = (this.destY + this.initY) / 2;
@@ -62,9 +47,17 @@ NbaBall.prototype = {
 		this.sprite.body.x = pt.x;
 		this.sprite.body.y = pt.y;
 
+		var slope = (this.initY - this.destY) / (this.initX - this.destX);
+		var lineX = pt.x;
+		var lineY = slope * (pt.x - this.initX) + this.initY;
+
+		this.ballSprite.body.x = lineX + 4;
+		this.ballSprite.body.y = lineY;
+
+		this.height = this.ballSprite.body.y - this.sprite.body.y;
+
 		if (this.pathIndex > 1) {
-			this.sprite.destroy();
-			this.game.state.getCurrentState().ball = null;
+			this.removeBall();
 		}
 	},
 
@@ -73,6 +66,12 @@ NbaBall.prototype = {
 		var newX = tp * tp * p0.x + 2 * t * tp * p1.x + t * t * p2.x;
 		var newY = tp * tp * p0.y + 2 * t * tp * p1.y + t * t * p2.y;
 		return { x:  newX, y: newY };
+	},
+
+	removeBall: function() {
+		this.ballSprite.destroy();
+		this.sprite.destroy();
+		this.game.state.getCurrentState().ball = null;
 	}
 
 }
