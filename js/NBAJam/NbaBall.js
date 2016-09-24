@@ -23,6 +23,7 @@ NbaBall.prototype = {
 		this.pathSpeed = (this.destX - this.initX) / 180;
 
 		this.sprite = game.add.sprite(x, y, 'BasketBullet');
+		this.sprite.scale.setTo(0.6, 0.6);
 		game.physics.arcade.enable(this.sprite);
 
 		this.game = game;

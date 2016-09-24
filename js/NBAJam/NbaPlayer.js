@@ -80,7 +80,6 @@ NbaPlayer.prototype = {
 
 			if (this.keySpace.isDown) {
 				this.shootBall();
-				this.shootAnim = this.sprite.animations.play('bball');
 			}
 		} else {
 			this.shoot --;
@@ -97,6 +96,8 @@ NbaPlayer.prototype = {
 		if (!this.enabled) return;
 
 		if (this.game.state.getCurrentState().ball === null) {
+			this.shootAnim = this.sprite.animations.play('bball');
+			this.sprite.scale.setTo(1,1);
 			var ball = new NbaBall();
 			ball.constructor(this.game, this.sprite.body.x, this.sprite.body.y, 778 , 280);
 			this.game.state.getCurrentState().ball = ball;

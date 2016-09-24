@@ -11,7 +11,7 @@ Menu.prototype = {
 		game.load.image('PacmanIntroBg', 'Assets/gfx/background_pac-man.png');
 		game.load.image('BasketBallHoop', 'Assets/gfx/basketball_hoop.png');
 		game.load.image('BasketBallCourt', 'Assets/gfx/basketball_court.png');
-		game.load.image('BasketBullet', 'Assets/gfx/NBAJam_playerbullet.png');
+		game.load.image('BasketBullet', 'Assets/gfx/basketball.png');
 		game.load.image('topwall', 'Assets/gfx/800x40 black.png');
 		game.load.image('sidewall', 'Assets/gfx/40x220 black.png');
 
