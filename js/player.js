@@ -17,13 +17,15 @@ Player.prototype = {
 	aKey: null,
 	sKey: null,
 	dKey: null,
+	shootAnim: null,
 
 	constructor: function(game, x, y) {
 		this.bullets = [];
 		this.shotTimer = 0;
 		this.enabled = true;
-		this.sprite = game.add.sprite(x, y, 'player');
+		this.sprite = game.add.sprite(x, y, 'gabe');
 		this.keys = game.input.keyboard.createCursorKeys();
+		this.sprite.anchor.setTo(0.5, 0.5);
 		game.physics.arcade.enable(this.sprite);
 		this.sprite.body.collideWorldBounds = true;
 		this.sprite.body.velocity.x = 0;
@@ -33,6 +35,12 @@ Player.prototype = {
 		this.aKey = game.input.keyboard.addKey(Phaser.Keyboard.A);
 		this.sKey = game.input.keyboard.addKey(Phaser.Keyboard.S);
 		this.dKey = game.input.keyboard.addKey(Phaser.Keyboard.D);
+
+		this.sprite.animations.add('idle', [0, 1], 4, true);
+		this.sprite.animations.add('right', [2, 3], 8, true);
+		this.sprite.animations.add('throwup', [4], 6, false);
+		this.sprite.animations.add('bball', [5], 2, false);
+		this.sprite.animations.play('idle');
 	},
 
 	update: function() {
@@ -50,12 +58,27 @@ Player.prototype = {
 		this.sprite.body.velocity.x += this.accel * Math.cos(dir);
 		this.sprite.body.velocity.y += this.accel * Math.sin(dir);
 		
-		if (dirX === 0 && dirY === 0) 
+		if (dirX === 0 && dirY === 0) {
+			if(this.shootAnim === null || !this.shootAnim.isPlaying){
+				this.sprite.animations.play('idle');
+			}
 			newSpeed = 1; 
+		}
 		else {
 			newSpeed = Math.sqrt(this.sprite.body.velocity.x * this.sprite.body.velocity.x + this.sprite.body.velocity.y * this.sprite.body.velocity.y);
 			this.direction = dir;
 		}
+
+		if(this.shootAnim === null || !this.shootAnim.isPlaying){
+			if(dirX !== 0){
+				this.sprite.animations.play('right');
+				this.sprite.scale.setTo(dirX, 1);
+			}
+			if(dirY !== 0){
+				this.sprite.animations.play('right');			
+			}
+		}
+
 
 		this.speed = this.limitSpeed(newSpeed, 25);
 		if (this.speed > this.maxVel) this.speed = this.maxVel;
@@ -70,6 +93,12 @@ Player.prototype = {
 			this.shotTimer = 0;
 		if (this.shotTimer === 0 && (this.wKey.isDown || this.aKey.isDown || this.sKey.isDown || this.dKey.isDown)) {
 			this.shoot();
+			if(game.state.current === 'NbaJamIntro'){
+				this.shootAnim = this.sprite.animations.play('bball');
+			}
+			else {
+				this.shootAnim = this.sprite.animations.play('throwup');
+			}
 		}
 	},
 
