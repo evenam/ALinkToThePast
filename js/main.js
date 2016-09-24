@@ -11,6 +11,7 @@ game.state.add('TetrisIntro', TetrisIntro);
 // game.state.add('TetrisMain', TetrisMain);
 // game.state.add('TetrisBoss', TetrisBoss);
 game.state.add('NbaJamIntro', NbaJamIntro);
+game.state.add('NbaJamSpecial', NbaJamSpecial);
 // game.state.add('NbaJamMain', NbaJamMain);
 // game.state.add('NbaJamBoss', NbaJamBoss);
 game.state.add('PacmanIntro', PacmanIntro);

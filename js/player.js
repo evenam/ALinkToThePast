@@ -93,12 +93,7 @@ Player.prototype = {
 			this.shotTimer = 0;
 		if (this.shotTimer === 0 && (this.wKey.isDown || this.aKey.isDown || this.sKey.isDown || this.dKey.isDown)) {
 			this.shoot();
-			if(game.state.current === 'NbaJamIntro'){
-				this.shootAnim = this.sprite.animations.play('bball');
-			}
-			else {
-				this.shootAnim = this.sprite.animations.play('throwup');
-			}
+			this.shootAnim = this.sprite.animations.play('throwup');
 		}
 	},
 

@@ -14,7 +14,8 @@ Menu.prototype = {
 		game.load.image('BasketBullet', 'Assets/gfx/basketball.png');
 		game.load.image('topwall', 'Assets/gfx/800x40 black.png');
 		game.load.image('sidewall', 'Assets/gfx/40x220 black.png');
-		game.load.image('life', 'Assets/gfx/life.png')
+		game.load.image('life', 'Assets/gfx/life.png');
+		game.load.image('bball_shadow', 'Assets/gfx/NBAjam_basketballshadow2.png');
 
 
 		game.load.spritesheet('gabe', 'Assets/gfx/gabenewell_spritesheet.png', 61, 115, 6);
@@ -37,6 +38,7 @@ Menu.prototype = {
 	startGame: function() {
 		// this.state.start('NbaJamIntro');
 		this.state.start('PacmanIntro');
+		// this.state.start('NbaJamSpecial');
 	}
 
 }
