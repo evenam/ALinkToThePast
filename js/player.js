@@ -24,10 +24,10 @@ Player.prototype = {
 		if (this.keys.up.isDown) this.body.velocity.y -= 5;
 		if (this.keys.down.isDown) this.body.velocity.y += 5;
 
-		this.body.velocity.x = Math.min(his.body.velocity.x,  50);
-		this.body.velocity.x = Math.max(his.body.velocity.x, -50);
-		this.body.velocity.y = Math.min(his.body.velocity.y,  50);
-		this.body.velocity.y = Math.max(his.body.velocity.y, -50);
+		this.body.velocity.x = Math.min(this.body.velocity.x,  50);
+		this.body.velocity.x = Math.max(this.body.velocity.x, -50);
+		this.body.velocity.y = Math.min(this.body.velocity.y,  50);
+		this.body.velocity.y = Math.max(this.body.velocity.y, -50);
 	},
 
 	shoot: function() {
