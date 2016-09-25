@@ -118,13 +118,13 @@ NbaJamSpecial.prototype = {
 		}
 
 		this.clock.destroy();
-		this.clock = game.add.text(350, 520, 'PTS:\n' + (this.score < 10 ? ' 0' : ' ') + this.score.toString(),
-			{font: '25px Press Start 2P', fill: 'white', stroke: 'red', strokeThickness: 3});
+		// this.clock = game.add.text(350, 520, 'PTS:\n' + (this.score < 10 ? ' 0' : ' ') + this.score.toString(),
+		// 	{font: '25px Press Start 2P', fill: 'white', stroke: 'red', strokeThickness: 3});
 
 		this.pointRange.destroy();
 		var px = this.player.sprite.body.x;
-		this.pointRange = game.add.text(30, 550, (px > 400 ? '1 Point' : '2 Point'),
-			{font: '25px Press Start 2P', fill: 'white', stroke: 'red', strokeThickness: 3});
+		this.pointRange = game.add.text(33, 550, (px > 400 ? '1 Point Range' : '2 Point Range'),
+			{font: '20px Press Start 2P', fill: 'white', stroke: 'red', strokeThickness: 3});
 
 
 
@@ -143,6 +143,8 @@ NbaJamSpecial.prototype = {
 				return e.anim.isPlaying;
 			});
 		}
-		
+
+		score.draw();
+
 	}
 }

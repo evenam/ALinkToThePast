@@ -10,7 +10,7 @@ Score.prototype = {
 
 	constructor: function() {
 
-		this.healthText = game.add.text(30,70, 'Health:',
+		this.healthText = game.add.text(33,70, 'Health:',
 			{font: '23px Helvetica', fill: '#ffffff', fontVariant:'small-caps'});
 		// this.health = 3;
 		this.healthArray = new Array();
@@ -28,7 +28,7 @@ Score.prototype = {
 	draw: function(){
 		if(this.text !== null)
 			this.text.destroy();
-		this.text = game.add.text(30, 30, "Score: " + this.value,
+		this.text = game.add.text(33, 30, "Score: " + this.value,
 			{font: '30px Helvetica', fill: '#ffffff', fontVariant:'small-caps'});
 	},
 

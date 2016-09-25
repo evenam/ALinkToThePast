@@ -60,11 +60,15 @@ NbaBall.prototype = {
 
 			var splosion = new Explosion();
 			splosion.constructor(this.game, this.ballSprite.body.x, this.ballSprite.body.y - 24, .5);
-		
+
 			this.removeBall();
-			if (this.initX < 400)
+			if (this.initX < 400) {
 				this.game.state.getCurrentState().score ++;
-				this.game.state.getCurrentState().score ++;
+				score.value++;
+			}
+			this.game.state.getCurrentState().score ++;
+			score.value++;
+
 
 			}
 	},
