@@ -139,8 +139,12 @@ Steve.prototype = {
     if (this.bullet === null && (this.openMouthAnim === null)) {
       this.openMouthAnim = this.sprite.animations.play('openMouth');
 	  } else if(this.bullet === null && !this.openMouthAnim.isPlaying){
+      var player = game.state.getCurrentState().player;
+      var diffX = player.sprite.body.x - this.sprite.x;
+      var diffY = player.sprite.body.y - this.sprite.y;
+      var dir = Math.atan2(diffY, diffX);
       this.bullet = new EnemyBullet();
-      this.bullet.constructor(this.game, this.sprite.body.x + 40, this.sprite.body.y + 130, Math.PI / 2, 'WindowsBullet');
+      this.bullet.constructor(this.game, this.sprite.body.x + 40, this.sprite.body.y + 130, dir, 'WindowsBullet');
       this.sprite.animations.play('closeMouth');
       this.openMouthAnim = null;
       this.generateNormalObject();
@@ -154,16 +158,29 @@ Steve.prototype = {
 
 	updateLazerTell: function() {
 		// play tell aniumation
-		this.state = 3;
+    if(this.openMouthAnim === null ){
+      this.openMouthAnim = this.sprite.animations.play('openMouth');
+    } else if(this.openMouthAnim !== null && this.openMouthAnim.isPlaying){
+      this.state = 3;
+    }
+
 	},
 
 	updateLazer: function() {
-		this.tell = 0;
-		this.state = 0;
+		/*this.tell = 0;
+		this.state = 0;*/
+    var player = game.state.getCurrentState().player;
+    var diffX = player.sprite.body.x - this.sprite.x;
+    var diffY = player.sprite.body.y - this.sprite.y;
+    var dir = Math.atan2(diffY, diffX);
+    this.bullet = new EnemyBullet();
+    this.bullet.constructor(this.game, this.sprite.body.x + 40, this.sprite.body.y + 130, dir, 'SteveLazer');
+    this.sprite.animations.play('closeMouth');
+    this.openMouthAnim = null;
 
 		// fire the lazer
-
 		this.generateNormalObject();
+    this.state = 0;
 	},
 
 	generateNormalObject: function() {

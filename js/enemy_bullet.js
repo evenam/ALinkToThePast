@@ -17,7 +17,7 @@ EnemyBullet.prototype = {
 		this.sprite.body.velocity.y = Math.sin(direction) * this.speed;
 		this.sprite.anchor.setTo(.5, .5);
 		this.sprite.angle = direction * 180 / Math.PI;
-		if (img === 'WindowsBullet') this.sprite.scale.setTo(5, 5);
+		if (img === 'WindowsBullet') this.sprite.scale.setTo(3, 3);
 	},
 
 	update: function() {
