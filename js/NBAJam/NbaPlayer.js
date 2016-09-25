@@ -153,6 +153,7 @@ NbaPlayer.prototype = {
 		pl.sprite.body.velocity.y = 400*Math.sin(dir);
 
 		pl.isHit = 20;
+		pl.shoot = 0;
 
 		score.loseHealth();
 	}
