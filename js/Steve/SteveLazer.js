@@ -7,7 +7,7 @@ SteveLazer.prototype = {
 	//speed: 800,
 	direction: 0,
 	rotDir: 0,
-	isLazer: false,
+	isLazer: true,
 
 	constructor: function(game, x, y, direction, rotDir) {
 		this.shotTimer = 0;
@@ -21,6 +21,7 @@ SteveLazer.prototype = {
 		this.rotDir = rotDir;
 		this.shotTimer = 0;
 		this.sprite.ParentRef = this;
+		this.sprite.isLazer = true;
 
 		var sound = game.add.audio('lazer_sound');
 		sound.play();
