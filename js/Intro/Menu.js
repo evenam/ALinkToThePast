@@ -24,6 +24,9 @@ Menu.prototype = {
 		game.load.image('pacmanghost4', 'Assets/gfx/pacmanghost4.png');
 		game.load.image('pacmanghost5', 'Assets/gfx/pacmanghost5.png');
 
+
+		game.load.image('TetrisDrop', 'Assets/gfx/tetris_drop.png');
+
 		game.load.image('pacground', 'Assets/gfx/pac-man_background.png');
 		game.load.image('steveground', 'Assets/gfx/BSODdevelopers.png');
 		game.load.image('tetrisbg', 'Assets/gfx/tetris background.png');

@@ -126,7 +126,7 @@ TetrisBaddy.prototype = {
 		e.enabled = false;
 		e.sprite.exists = false;
 		var ch = new Collectable();
-		ch.constructor(e.sprite.x, e.sprite.y, 10, 'cherry');
+		ch.constructor(e.sprite.x, e.sprite.y, 10, 'TetrisDrop');
 		game.state.getCurrentState().cherries.push(ch);
 	}
 }
