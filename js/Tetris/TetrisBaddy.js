@@ -7,6 +7,7 @@ TetrisBaddy.prototype = {
 	playerRef: null,
 	stateTimer: 0,
 	speed: 0,
+	bullets: null,
 
 	// 0 - shooter
 	// 1 - walker
@@ -17,6 +18,7 @@ TetrisBaddy.prototype = {
 	state: 0,
 
 	constructor: function(game, x, y, player, type) {
+		this.bullets = [];
 		var ranNum = Math.floor(Math.random() * 5 + 1);
 		var sprite = "TEnemy" + ranNum;
 		this.sprite = game.add.sprite(x, y, sprite);
@@ -33,6 +35,7 @@ TetrisBaddy.prototype = {
 		this.playerRef = player;
 		this.type = type;
 		this.enabled = true;
+		this.stateTimer = Math.random() * 60;
 		if (type === 1) 
 			this.speed = 200;	 
 		else 
@@ -104,6 +107,14 @@ TetrisBaddy.prototype = {
 		this.sprite.body.velocity.y = 0;
 		if (this.stateTimer === 0) {
 			// TODO: shoot bullet
+			var player = game.state.getCurrentState().player;
+			var diffX = player.sprite.body.x - this.sprite.x;
+			var diffY = player.sprite.body.y - this.sprite.y;
+			var dir = Math.atan2(diffY, diffX);
+
+			var bullet = new EnemyBullet();
+			bullet.constructor(game, this.sprite.x, this.sprite.y, dir, 'RedTetrisBullet');
+			this.bullets.push(bullet);
 		}
 	},
 

@@ -6,7 +6,7 @@ Menu.prototype = {
 
 	preload: function() {
 		this.load_label = game.add.text(90, 90, 'Please wait, loading...', {font: '30px Arial', fill: '#ffffff' });
-		this.bg = game.load.image('bg', 'Assets/gfx/shady_tree.png');
+		this.bg = game.load.image('shadytreelogo', 'Assets/gfx/shady_tree.png');
 		game.load.image('player', 'Assets/gfx/friendly.png');
 		game.load.image('PacmanIntroBg', 'Assets/gfx/background_pac-man.png');
 		game.load.image('BasketBallHoop', 'Assets/gfx/basketball_hoop.png');
@@ -52,29 +52,38 @@ Menu.prototype = {
 		// default enemy
 		game.load.image('enemy', 'Assets/gfx/monster.png');
 
-		//game.load.image('SteveLazer', 'Assets/gfx/steve/lazer.png');
+		game.load.image('SteveLazer', 'Assets/gfx/steve/steve_lazer.png');
 		game.load.image('WindowsBullet', 'Assets/gfx/steve/steve_windowsbullest.png');
 		game.load.image('WhiteTetrisBullet', 'Assets/gfx/tetris_whiteprojectile.png');
-		game.load.image('RedTetrisBullet', 'Assets/gfx/tetris_whiteprojectile.png');
+		game.load.image('RedTetrisBullet', 'Assets/gfx/tetris_projectile.png');
+
+		//Splash screens
+		game.load.image('startscreen', 'Assets/gfx/startscreen.png');
+		game.load.image('BeforePacman', 'Assets/gfx/Text screens/beforePac-man.png');
+		game.load.image('BeforeNBA', 'Assets/gfx/Text screens/beforeNBA.png');
+		game.load.image('BeforeTetris', 'Assets/gfx/Text screens/beforetetris.png');
+		game.load.image('BeforeSteve', 'Assets/gfx/Text screens/beforesteve.png');
 
 
 		game.load.spritesheet('explosion', 'Assets/gfx/explosion_transparent.png', 64, 64, 23);
 	},
 
 	create: function() {
-		var button = this.add.button(0, 0, 'bg', this.startGame, this);
-		button.scale.setTo(800 / 3507, 600 / 2550);
+		var button = this.add.button(0, 0, 'shadytreelogo', this.startGame, this);
 		game.physics.startSystem(Phaser.Physics.ARCADE);
 	},
 
 	startGame: function() {
 		gameOverScreen.constructor(); // trust me.
 
-		// this.state.start('NbaJamIntro');
-		// this.state.start('NbaJamSpecial');
-		this.state.start('PacmanIntro');
+
+		this.state.start('StartScreen');
+		//this.state.start('NbaJamIntro');
+		//this.state.start('NbaJamSpecial');
+		//this.state.start('PacmanIntro');
 		//this.state.start('SteveStage');
-		// this.state.start('TetrisIntro');
+		//this.state.start('TetrisIntro');
+
 
 	}
 

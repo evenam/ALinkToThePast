@@ -4,7 +4,7 @@ EnemyBullet.prototype = {
 	shotTimer: 0,
 	enabled: true,
 	sprite: null,
-	speed: 800,
+	speed: 500,
 
 	constructor: function(game, x, y, direction, img) {
 		this.shotTimer = 0;
@@ -17,7 +17,7 @@ EnemyBullet.prototype = {
 		this.sprite.body.velocity.y = Math.sin(direction) * this.speed;
 		this.sprite.anchor.setTo(.5, .5);
 		this.sprite.angle = direction * 180 / Math.PI;
-		if (img === 'WindowsBullet') this.sprite.scale.setTo(5, 5);
+		if (img === 'WindowsBullet') this.sprite.scale.setTo(3, 3);
 	},
 
 	update: function() {
@@ -29,4 +29,5 @@ EnemyBullet.prototype = {
 		this.sprite.destroy(); // for testing purposes.
 		score.loseHealth();
 	}
+
 }

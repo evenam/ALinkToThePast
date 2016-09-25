@@ -149,8 +149,8 @@ NbaPlayer.prototype = {
 
 		var dir = Math.atan2(diffY, diffX);
 
-		pl.sprite.body.velocity.x = 400*Math.cos(dir);
 		pl.sprite.body.velocity.y = 400*Math.sin(dir);
+		e.sprite.body.velocity.y = -400*Math.sin(dir);
 
 		pl.isHit = 20;
 		pl.shoot = 0;
