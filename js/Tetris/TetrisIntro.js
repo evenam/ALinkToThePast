@@ -60,6 +60,9 @@ TetrisIntro.prototype = {
 	},
 
 	update: function() {
+		if(isGameOver){
+			return;
+		}
 		var won = true;
 		for(var i = 0; i < this.enemies.length; i++){
 			if(this.enemies[i].enabled){
@@ -67,13 +70,13 @@ TetrisIntro.prototype = {
 			}
 		}
 		if(won){
-			this.door.visible = true;			
+			this.door.visible = true;
 			if(this.player.sprite.body.x > 780){
 				//Switch to steve
 				game.state.start('BeforeSteve');
 			}
 		} else {
-			game.physics.arcade.collide(this.player.sprite, this.door);	
+			game.physics.arcade.collide(this.player.sprite, this.door);
 		}
 		this.player.update();
 		game.physics.arcade.collide(this.player.sprite, this.walls);

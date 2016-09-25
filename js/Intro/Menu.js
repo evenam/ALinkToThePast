@@ -70,6 +70,12 @@ Menu.prototype = {
 
 
 		game.load.spritesheet('explosion', 'Assets/gfx/explosion_transparent.png', 64, 64, 23);
+	
+		game.load.audio('sv_track', 'Assets/music/title_music.ogg');
+		game.load.audio('lazer_sound', 'Assets/sfx/steve_lazer.ogg');
+		game.load.audio('shout_sound', 'Assets/sfx/steve_shout.ogg');
+		game.load.audio('tell_sound', 'Assets/sfx/steve_tell.ogg');
+
 	},
 
 	create: function() {

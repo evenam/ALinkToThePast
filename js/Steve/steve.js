@@ -142,6 +142,8 @@ Steve.prototype = {
 
     if (this.bullet === null && (this.openMouthAnim === null)) {
       this.openMouthAnim = this.sprite.animations.play('openMouth');
+      var sound = game.add.audio('shout_sound');
+      sound.play();
 	  } else if(this.bullet === null && !this.openMouthAnim.isPlaying){
       var player = game.state.getCurrentState().player;
       var diffX = player.sprite.body.x - this.sprite.x;
@@ -173,6 +175,8 @@ Steve.prototype = {
       console.log(dir * 180 / Math.PI);
       this.tell = dir;
       this.openMouthAnim = this.sprite.animations.play('tell');
+      var sound = game.add.audio('tell_sound');
+      sound.play();
     } else if(this.openMouthAnim !== null && !this.openMouthAnim.isPlaying){
       this.state = 3;
     }
@@ -205,7 +209,7 @@ Steve.prototype = {
 
 	generateNormalObject: function() {
 		this.normal = {
-			nextStage: (Math.random() > .33 ? 1 : 2),
+			nextStage: 2, //(Math.random() > .33 ? 1 : 2),
 			current: 0,
 			timer: 120
 		}
@@ -221,7 +225,7 @@ Steve.prototype = {
     console.log(steve.health);
     steve.health --;
     if (steve.health <= 0)
-      game.state.start('FinalScene');
+      game.state.start('FinalStage');
     
   }
 };

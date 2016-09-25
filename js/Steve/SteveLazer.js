@@ -7,6 +7,7 @@ SteveLazer.prototype = {
 	//speed: 800,
 	direction: 0,
 	rotDir: 0,
+	isLazer: false,
 
 	constructor: function(game, x, y, direction, rotDir) {
 		this.shotTimer = 0;
@@ -19,12 +20,19 @@ SteveLazer.prototype = {
 		this.direction = direction * 180 / Math.PI;
 		this.rotDir = rotDir;
 		this.shotTimer = 0;
+		this.sprite.ParentRef = this;
+
+		var sound = game.add.audio('lazer_sound');
+		sound.play();
 	},
 
 	update: function() {
 		if (!this.enabled) return;
 
 		this.shotTimer ++;
+
+		this.sprite.body.velocity.x = 0;
+		this.sprite.body.velocity.y = 0;
 
 		this.sprite.angle += this.rotDir * .66;
 		if (this.shotTimer > 45) 
