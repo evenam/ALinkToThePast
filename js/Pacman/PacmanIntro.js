@@ -29,7 +29,7 @@ PacmanIntro.prototype = {
 			var w4 = this.walls.create(i*(800-40), 600 - 40 - 220, 'sidewall');
 			w4.body.immovable = true;
 		}
-		this.add.image(0, 0, "PacmanIntroBg");
+		this.add.image(0, 0, "pacground");
 		// this.add.text(10, 10, "PacmanIntro", {font: '30px Helvetica', fill: '#ffffff'});
 
 

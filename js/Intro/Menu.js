@@ -18,13 +18,21 @@ Menu.prototype = {
 		game.load.image('bball_shadow', 'Assets/gfx/NBAjam_basketballshadow2.png');
 		game.load.image('door', 'Assets/gfx/door.png');
 
+		game.load.image('pacmanghost1', 'Assets/gfx/pacmanghost1.png');
+		game.load.image('pacmanghost2', 'Assets/gfx/pacmanghost2.png');
+		game.load.image('pacmanghost3', 'Assets/gfx/pacmanghost3.png');
+		game.load.image('pacmanghost4', 'Assets/gfx/pacmanghost4.png');
+		game.load.image('pacmanghost5', 'Assets/gfx/pacmanghost5.png');
+
+		game.load.image('pacground', 'Assets/gfx/pac-man_background.png');
+
 		game.load.spritesheet('steve', 'Assets/gfx/steve/steve_sprsheet.png', 160, 200, 6);
 
 		game.load.spritesheet('gabe', 'Assets/gfx/gabenewell_spritesheet.png', 61, 115, 6);
 		game.load.spritesheet('bbdefender', 'Assets/gfx/basketballplayer_spritesheet.png', 58, 112, 3);
 
 		//Projectile
-		game.load.image('bullet', 'Assets/gfx/projectile.png');
+		game.load.image('bullet', 'Assets/gfx/projectile_pacman.png');
 
 		game.load.image('cherry', 'Assets/gfx/cherry_pac-man.png');
 
@@ -44,6 +52,7 @@ Menu.prototype = {
 	startGame: function() {
 		//this.state.start('NbaJamSpecial');
 		this.state.start('PacmanIntro');
+		//this.state.start('SteveStage');
 	}
 
 }

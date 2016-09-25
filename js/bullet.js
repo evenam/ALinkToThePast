@@ -15,6 +15,8 @@ Bullet.prototype = {
 		this.sprite.checkWorldBounds= true;
 		this.sprite.body.velocity.x = Math.cos(direction) * this.speed;
 		this.sprite.body.velocity.y = Math.sin(direction) * this.speed;
+
+		this.sprite.angle = direction * 180/Math.PI;
 	},
 
 	update: function() {
