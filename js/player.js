@@ -140,7 +140,7 @@ Player.prototype = {
 		this.speed = this.limitSpeed(this.speed, 50);
 		if (this.isHit > 1) {
 			this.isHit --;
-			this.sprite.alpha = (1 + Math.sin(Math.PI * this.isHit / 10)) / 2;
+			this.sprite.alpha = (1 + Math.sin(Math.PI * this.isHit / 4)) / 2;
 		} else {
 			this.isHit = 0;
 			this.sprite.alpha = 1;
@@ -162,6 +162,8 @@ Player.prototype = {
 
 		e.enabled = false;
 		e.sprite.exists = false;
+
+		pl.isHit = 20;
 
 		score.loseHealth();
 	}
