@@ -156,9 +156,6 @@ Player.prototype = {
 		pl.sprite.body.velocity.x = 600*Math.cos(dir);
 		pl.sprite.body.velocity.y = 600*Math.sin(dir);
 
-		e.enabled = false;
-		e.sprite.exists = false;
-
 		pl.isHit = 10;
 
 		score.loseHealth();
