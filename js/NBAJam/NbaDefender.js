@@ -28,6 +28,8 @@ NbaDefender.prototype = {
 		this.game = game;
 		this.sprite.animations.play('idle');
 
+		this.sprite.ParentRef = this;
+
 		this.moveDir = (Math.random() < .5 ? 1 : -1);
 		this.sprite.body.velocity.y = this.moveDir * this.speed;
 		this.sprite.body.bounce.set(1);

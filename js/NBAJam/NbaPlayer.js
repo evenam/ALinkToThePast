@@ -14,6 +14,7 @@ NbaPlayer.prototype = {
 	x: 0,
 	y: 0,
 	shootAnim: null,
+	isHit: 0,
 
 	constructor: function(game, x, y) {
 		this.enabled = true;
@@ -34,10 +35,18 @@ NbaPlayer.prototype = {
 		this.game = game;
 		this.shoot = 0;
 		this.keySpace = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+		this.isHit = 0;
+
+		this.sprite.ParentRef = this;
 	},
 
 	update: function() {
 		if (!this.enabled) return;
+
+		if (this.isHit > 0) {
+			this.updateHit();
+			return;
+		}
 
 		if (this.shoot === 0) {
 
@@ -119,5 +128,32 @@ NbaPlayer.prototype = {
 		else if (val < 0)
 			val = 0;
 		return val;
+	},
+
+	updateHit: function() {
+		this.speed = this.limitSpeed(this.speed, 50);
+		if (this.isHit > 1) {
+			this.isHit --;
+			this.sprite.alpha = (1 + Math.sin(Math.PI * this.isHit / 4)) / 2;
+		} else {
+			this.isHit = 0;
+			this.sprite.alpha = 1;
+		} 
+	},
+	onHit: function(enemy, me){
+		var pl = me.ParentRef;
+		var e = enemy.ParentRef;
+
+		var diffY = pl.sprite.body.y - e.sprite.body.y;
+		var diffX = pl.sprite.body.x - e.sprite.body.x;
+
+		var dir = Math.atan2(diffY, diffX);
+
+		pl.sprite.body.velocity.x = 400*Math.cos(dir);
+		pl.sprite.body.velocity.y = 400*Math.sin(dir);
+
+		pl.isHit = 20;
+
+		score.loseHealth();
 	}
 }

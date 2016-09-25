@@ -101,14 +101,10 @@ NbaJamSpecial.prototype = {
 		game.physics.arcade.collide(this.player.sprite, this.walls);
 		this.player.update();
 		for (var i = 0; i < this.defenders.length; i++) {
+			game.physics.arcade.overlap(this.defenders[i].sprite, this.player.sprite, this.player.onHit);
 			this.defenders[i].update();
-			this.defenders[i].sprite.bringToTop();
 		}
-
-		this.player.sprite.bringToTop();
-
 		if (this.ball){
-			this.ball.sprite.bringToTop();
 			this.ball.update();
 		}
 
