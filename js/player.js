@@ -173,6 +173,6 @@ Player.prototype = {
 		score.loseHealth();
 
 		var which = Math.floor((Math.random()*2 + 1));
-		score.playSound('hit'+which);
+		score.playSound('dmg'+which);
 	}
 }

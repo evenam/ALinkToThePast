@@ -20,13 +20,17 @@ Score.prototype = {
 		if(this.music !== null && this.music.isPlaying){
 			this.music.stop();
 		}
-		this.music = new Phaser.Sound(game, track,1,true);
+		this.music = new Phaser.Sound(game, track,0.6,true);
 		this.music.play();
 
 	},
 
 	playSound: function(track){
-		this.sfx = new Phaser.Sound(game, track, 1, false);
+		var volume = 1;
+		if(track === 'dmg1' || track === 'dmg2'){
+			volume = 3;
+		}
+		this.sfx = new Phaser.Sound(game, track, volume, false);
 		this.sfx.play();
 	},
 
