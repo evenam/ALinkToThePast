@@ -49,6 +49,7 @@ Menu.prototype = {
 
 		//Projectile
 		game.load.image('bullet', 'Assets/gfx/projectile_pacman.png');
+		game.load.image('sale_bullet', 'Assets/gfx/steamsale_projectile.png');
 
 		game.load.image('cherry', 'Assets/gfx/cherry_pac-man.png');
 
@@ -80,11 +81,11 @@ Menu.prototype = {
 		gameOverScreen.constructor(); // trust me.
 
 
-		this.state.start('StartScreen');
+		//this.state.start('StartScreen');
 		//this.state.start('NbaJamIntro');
 		//this.state.start('NbaJamSpecial');
 		//this.state.start('PacmanIntro');
-		//this.state.start('SteveStage');
+		this.state.start('SteveStage');
 		//this.state.start('TetrisIntro');
 
 

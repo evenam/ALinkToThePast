@@ -40,6 +40,9 @@ Bullet.prototype = {
 		} else if(game.state.current === 'TetrisIntro'){
 			this.sprite = game.add.sprite(x, y, 'WhiteTetrisBullet');
 			return;
+		} else if(game.state.current === 'SteveStage'){
+			this.sprite = game.add.sprite(x, y, 'sale_bullet');
+			return;
 		}
 		this.sprite = game.add.sprite(x,y,'bullet');
 	}
