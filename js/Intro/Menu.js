@@ -42,6 +42,9 @@ Menu.prototype = {
 
 		//game.load.image('SteveLazer', 'Assets/gfx/steve/lazer.png');
 		game.load.image('WindowsBullet', 'Assets/gfx/steve/steve_windowsbullest.png');
+
+
+		game.load.spritesheet('explosion', 'Assets/gfx/explosion_transparent.png', 64, 64, 23);
 	},
 
 	create: function() {
@@ -53,8 +56,8 @@ Menu.prototype = {
 	startGame: function() {
 
 		// this.state.start('NbaJamIntro');
-		//this.state.start('NbaJamSpecial');
-		this.state.start('PacmanIntro');
+		this.state.start('NbaJamSpecial');
+		//this.state.start('PacmanIntro');
 		//this.state.start('SteveStage');
 
 	}

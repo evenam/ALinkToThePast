@@ -37,6 +37,16 @@ NbaDefender.prototype = {
 
 	update: function() {
 
+		if (this.game.state.getCurrentState().ball !== null) {
+			var ball = this.game.state.getCurrentState().ball;
+			game.physics.arcade.overlap(ball.ballSprite, this.sprite, (function(ball, me){
+				return function() {
+					if (ball.height < 140)
+						ball.removeBall();
+				}
+			})(ball, this));
+		}
+
 		if (this.isJumping) {
 			this.updateJump();
 			return;
@@ -48,9 +58,10 @@ NbaDefender.prototype = {
 		if (this.game.state.getCurrentState().ball && Math.sqrt((this.sprite.body.x - this.game.state.getCurrentState().ball.ballSprite.body.x)
 			 * (this.sprite.body.x - this.game.state.getCurrentState().ball.ballSprite.body.x)
 			 + (this.sprite.body.y - this.game.state.getCurrentState().ball.ballSprite.body.y)
-			 * (this.sprite.body.y - this.game.state.getCurrentState().ball.ballSprite.body.y)) < 50) {
+			 * (this.sprite.body.y - this.game.state.getCurrentState().ball.ballSprite.body.y)) < 40
+			&& this.game.state.getCurrentState().ball.height < 200) {
 			this.isJumping = true;
-		}
+		} else this.isJumping = false;
 /*
 		if (this.jumpTimer > 0)
 			this.jumpTimer --;
@@ -63,16 +74,6 @@ NbaDefender.prototype = {
 			this.sprite.animations.play('idle');
 		}*/
 		this.sprite.animations.play('idle');
-
-		if (this.game.state.getCurrentState().ball !== null) {
-			var ball = this.game.state.getCurrentState().ball;
-			game.physics.arcade.overlap(ball.ballSprite, this.sprite, (function(ball, me){
-				return function() {
-					if (ball.height < 200 && me.jumpAnim !== null)
-						ball.removeBall();
-				}
-			})(ball, this));
-		}
 	},
 
 	updateJump: function() {

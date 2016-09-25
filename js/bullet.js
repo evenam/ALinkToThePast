@@ -5,6 +5,7 @@ Bullet.prototype = {
 	enabled: true,
 	sprite: null,
 	speed: 800,
+	game: null,
 
 	constructor: function(game, x, y, direction) {
 		this.shotTimer = 0;
@@ -17,6 +18,7 @@ Bullet.prototype = {
 		this.sprite.body.velocity.y = Math.sin(direction) * this.speed;
 
 		this.sprite.angle = direction * 180/Math.PI;
+		this.game = game;
 	},
 
 	update: function() {
@@ -24,6 +26,8 @@ Bullet.prototype = {
 	},
 
 	destroy: function(){
+		var splosion = new Explosion();
+		splosion.constructor(this.game, this.sprite.body.x, this.sprite.body.y, 1);
 		this.enabled = false;
 		this.sprite.destroy(); // for testing purposes.
 	},

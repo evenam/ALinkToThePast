@@ -91,5 +91,15 @@ PacmanIntro.prototype = {
 		if(this.player.sprite.body.x > 780){
 			game.state.start('NbaJamSpecial');
 		}
+
+		if (!(this.explosion === undefined)) {
+			this.explosion.forEach(function(e) {
+					e.update();
+			});
+
+			this.explosion = this.explosion.filter(function(e) {
+				return e.anim.isPlaying;
+			});
+		}
 	}
 }
