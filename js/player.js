@@ -151,7 +151,6 @@ Player.prototype = {
 		var pl = me.ParentRef;
 		var e = enemy.ParentRef;
 
-
 		var diffY = pl.sprite.body.y - e.sprite.body.y;
 		var diffX = pl.sprite.body.x - e.sprite.body.x;
 
@@ -159,9 +158,6 @@ Player.prototype = {
 
 		pl.sprite.body.velocity.x = 400*Math.cos(dir);
 		pl.sprite.body.velocity.y = 400*Math.sin(dir);
-
-		e.enabled = false;
-		e.sprite.exists = false;
 
 		score.loseHealth();
 	}
