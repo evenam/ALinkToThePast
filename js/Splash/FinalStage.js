@@ -2,9 +2,15 @@ var FinalStage = function() {};
 
 FinalStage.prototype = {
 	button: null,
+	gameOverText: null,
 
 	create: function(){		
-		this.button = this.add.button(0, 0, 'FinalStage', this.continue, this);
+		this.gameOverText = game.add.text(400, 200, "Winner! Highscore!",
+			{font: '32px Press Start 2P', fill: 'white', stroke: 'red', strokeThickness: 3});
+		this.gameOverText.anchor.setTo(0.5, 0.5);
+		this.gameOverText = game.add.text(400, 300, "Score: " + score.value,
+			{font: '24px Press Start 2P', fill: 'white', stroke: 'red', strokeThickness: 3});
+		this.gameOverText.anchor.setTo(0.5, 0.5);
 	},
 
 	continue: function() {
