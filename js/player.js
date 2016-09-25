@@ -152,6 +152,7 @@ Player.prototype = {
 	onHit: function(enemy, me){
 		var pl = me.ParentRef;
 		var e = enemy.ParentRef;
+		console.log(e);
 
 		var diffY = pl.sprite.body.y - e.sprite.body.y;
 		var diffX = pl.sprite.body.x - e.sprite.body.x;
@@ -161,7 +162,7 @@ Player.prototype = {
 		pl.sprite.body.velocity.x = 400*Math.cos(dir);
 		pl.sprite.body.velocity.y = 400*Math.sin(dir);
 
-		console.log(e.isLazer);
+		console.log(enemy.isLazer);
 		if (!e.isLazer) {
 			e.sprite.body.velocity.x = -400*Math.cos(dir);
 			e.sprite.body.velocity.y = -400*Math.sin(dir);

@@ -121,8 +121,6 @@ Steve.prototype = {
     else if (this.state == 2) this.updateLazerTell();
     else if (this.state == 3) this.updateLazer();
 
-    console.log(this.state);
-
 	},
 
 	updateNormal: function() {
@@ -172,7 +170,6 @@ Steve.prototype = {
       var diffX = player.sprite.body.x - this.sprite.x;
       var diffY = player.sprite.body.y - this.sprite.y;
       var dir = Math.atan2(-diffY, diffX);
-      console.log(dir * 180 / Math.PI);
       this.tell = dir;
       this.openMouthAnim = this.sprite.animations.play('tell');
       var sound = game.add.audio('tell_sound');
@@ -209,7 +206,7 @@ Steve.prototype = {
 
 	generateNormalObject: function() {
 		this.normal = {
-			nextStage: 2, //(Math.random() > .33 ? 1 : 2),
+			nextStage: (Math.random() > .33 ? 1 : 2),
 			current: 0,
 			timer: 120
 		}
@@ -222,7 +219,6 @@ Steve.prototype = {
     var steve = me.ParentRef;
     var b = bullet.ParentRef;    
     b.destroy();
-    console.log(steve.health);
     steve.health --;
     if (steve.health <= 0)
       game.state.start('FinalStage');

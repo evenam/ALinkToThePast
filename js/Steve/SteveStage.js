@@ -41,10 +41,16 @@ SteveStage.prototype = {
 			});
 		}
 
-		if (this.steve.bullet && (this.player.isHit === 0)) {
-			if (condition) {
-				this.player.onHit(this.steve.bullet.sprite, this.player.sprite);
-			}
+		game.physics.arcade.overlap(this.steve.sprite, this.player.sprite, this.player.onHit);
+		if (this.steve.bullet && (this.player.isHit === 0) && this.steve.bullet.isLazer === undefined) {
+			game.physics.arcade.overlap(this.steve.bullet.sprite, this.player.sprite, this.player.onHit);
+		} else if (this.steve.bullet && (this.player.isHit <= 0)) {
+			var dir_lazer = 270 - this.steve.bullet.sprite.angle;
+	      	var diffX = this.player.sprite.body.x - this.steve.sprite.x;
+	      	var diffY = this.player.sprite.body.y - this.steve.sprite.y;
+			var dir_player = 180 - (180 / Math.PI) * Math.atan2(-diffY, -diffX);
+			console.log('here')
+			if (Math.abs(dir_player - dir_lazer) < 5) this.player.onHit(this.steve.bullet.sprite, this.player.sprite);
 		}
 
 		score.draw();
