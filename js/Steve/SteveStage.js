@@ -25,6 +25,8 @@ SteveStage.prototype = {
 
 	update: function() {
 
+		if (isGameOver) return;
+
 		for(var bt = 0; bt < this.player.bullets.length; bt++){
 			game.physics.arcade.overlap(this.player.bullets[bt].sprite, this.steve.sprite, this.steve.onHit);
 		}
