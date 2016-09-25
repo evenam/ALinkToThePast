@@ -26,11 +26,18 @@ Menu.prototype = {
 
 		game.load.image('pacground', 'Assets/gfx/pac-man_background.png');
 		game.load.image('steveground', 'Assets/gfx/BSODdevelopers.png');
+		game.load.image('tetrisbg', 'Assets/gfx/tetris background.png');
 
 		game.load.spritesheet('steve', 'Assets/gfx/steve/steve_sprsheet.png', 160, 200, 7);
 
 		game.load.spritesheet('gabe', 'Assets/gfx/gabenewell_spritesheet.png', 61, 115, 6);
 		game.load.spritesheet('bbdefender', 'Assets/gfx/basketballplayer_spritesheet.png', 58, 112, 3);
+
+		game.load.spritesheet('TEnemy1', 'Assets/gfx/tetris_bug_spritesheet.png', 61, 61, 3);
+		game.load.spritesheet('TEnemy2', 'Assets/gfx/tetris_L_spritesheet.png', 50, 87, 3);
+		game.load.spritesheet('TEnemy3', 'Assets/gfx/tetris_I_spritesheet.png', 42, 84, 3);
+		game.load.spritesheet('TEnemy4', 'Assets/gfx/tetris_macaroni_spritesheet.png', 48, 74, 3);
+		game.load.spritesheet('TEnemy5', 'Assets/gfx/tetris_square_spritesheet.png', 56, 68, 3);
 
 		//Projectile
 		game.load.image('bullet', 'Assets/gfx/projectile_pacman.png');
@@ -56,9 +63,10 @@ Menu.prototype = {
 	startGame: function() {
 
 		// this.state.start('NbaJamIntro');
-		this.state.start('NbaJamSpecial');
+		//this.state.start('NbaJamSpecial');
 		//this.state.start('PacmanIntro');
 		//this.state.start('SteveStage');
+		this.state.start('TetrisIntro');
 
 	}
 
