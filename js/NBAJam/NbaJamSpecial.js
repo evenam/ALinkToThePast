@@ -92,7 +92,7 @@ NbaJamSpecial.prototype = {
 			this.goal.visible = false;
 			if(this.player.sprite.body.x > 780){
 				//Switch to steve
-				game.state.start('SteveStage');
+				game.state.start('BeforeTetris');
 			}
 		} else {
 			game.physics.arcade.collide(this.player.sprite, this.door);

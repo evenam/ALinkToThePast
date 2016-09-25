@@ -87,7 +87,7 @@ PacmanIntro.prototype = {
 		}
 
 		if(this.player.sprite.body.x > 780){
-			game.state.start('NbaJamSpecial');
+			game.state.start('BeforeNBA');
 		}
 		score.draw();
 	}

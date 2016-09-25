@@ -60,8 +60,18 @@ TetrisIntro.prototype = {
 	},
 
 	update: function() {
-		if(score.value >= 50){
-			this.door.visible = true;
+		var won = true;
+		for(var i = 0; i < this.enemies.length; i++){
+			if(this.enemies[i].enabled){
+				won = false;
+			}
+		}
+		if(won){
+			this.door.visible = true;			
+			if(this.player.sprite.body.x > 780){
+				//Switch to steve
+				game.state.start('BeforeSteve');
+			}
 		} else {
 			game.physics.arcade.collide(this.player.sprite, this.door);	
 		}
@@ -92,9 +102,6 @@ TetrisIntro.prototype = {
 
 
 		score.draw();
-		if(this.player.sprite.body.x > 780){
-			game.state.start('NbaJamSpecial');
-		}
 
 		if (!(this.explosion === undefined)) {
 			this.explosion.forEach(function(e) {
