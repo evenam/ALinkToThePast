@@ -58,6 +58,8 @@ GameOver.prototype = {
 
 	continue: function() {
 		score.value = score.value / 2;
+		score.health = 3;
+		score.constructor();
 		this.hide();
 		game.state.start(game.state.current)
 	},
