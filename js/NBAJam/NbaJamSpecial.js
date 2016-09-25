@@ -82,7 +82,7 @@ NbaJamSpecial.prototype = {
 		this.pointRange = game.add.text(30, 540, (px > 400 ? '1 Point Range' : '2 point range'),
 			{font: '25px Press Start 2P', fill: 'white', stroke: 'red', strokeThickness: 3});
 
-			score.constructor();
+			score.constructor("nba_music");
 
 	},
 

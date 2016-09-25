@@ -50,7 +50,7 @@ TetrisIntro.prototype = {
 			this.enemies.push(en);
 		}
 
-		score.constructor();
+		score.constructor("tetris_music");
 		this.door = game.add.sprite(800-80, 260, 'door');
 		game.physics.arcade.enable(this.door);
 		this.door.body.setSize(40,40,20,0);

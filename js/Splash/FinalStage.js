@@ -11,6 +11,9 @@ FinalStage.prototype = {
 		this.gameOverText = game.add.text(400, 300, "Score: " + score.value,
 			{font: '24px Press Start 2P', fill: 'white', stroke: 'red', strokeThickness: 3});
 		this.gameOverText.anchor.setTo(0.5, 0.5);
+		var music = new Phaser.Sound(game,'sv_track',1,true);
+
+		music.play();
 	},
 
 	continue: function() {

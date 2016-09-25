@@ -20,7 +20,7 @@ SteveStage.prototype = {
 
 		//music.play();
 
-		score.constructor();
+		score.constructor("steve_music");
 	},
 
 	update: function() {

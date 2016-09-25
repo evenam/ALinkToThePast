@@ -9,16 +9,23 @@ Score.prototype = {
 	music: null,
 
 
-	constructor: function() {
+	constructor: function(track) {
 
 		this.healthText = game.add.text(33,70, 'Health:',
 			{font: '23px Helvetica', fill: '#ffffff', fontVariant:'small-caps'});
 		// this.health = 3;
 		this.healthArray = new Array();
 		this.initHealth();
-		this.music = new Phaser.Sound(game,'sv_track',1,true);
+		if(this.music !== null && this.music.isPlaying){
+			this.music.stop();
+		}
+		this.music = new Phaser.Sound(game, track,1,true);
 		this.music.play();
 
+	},
+
+	playSound: function(track){
+		new Phaser.Sound(game, track, 1, false);
 	},
 
 	initHealth: function() {

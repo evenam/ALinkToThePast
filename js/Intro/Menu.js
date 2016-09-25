@@ -76,6 +76,15 @@ Menu.prototype = {
 		game.load.audio('shout_sound', 'Assets/sfx/steve_shout.ogg');
 		game.load.audio('tell_sound', 'Assets/sfx/steve_tell.ogg');
 
+		game.load.audio('title_music', 'Assets/music/title_music.ogg');
+		game.load.audio('steve_music', 'Assets/music/steve.ogg');
+		game.load.audio('tetris_music', 'Assets/music/tetris.ogg');
+		game.load.audio('pacman_music', 'Assets/music/pacman.ogg');
+		game.load.audio('nba_music', 'Assets/music/jpeg-cena-nba-jam.ogg');
+		game.load.audio('score', 'Assets/music/scoring sound NBA.ogg');
+		game.load.audio('block', 'Assets/music/denied.ogg');
+
+
 	},
 
 	create: function() {
@@ -87,11 +96,11 @@ Menu.prototype = {
 		gameOverScreen.constructor(); // trust me.
 
 
-		//this.state.start('StartScreen');
+		this.state.start('StartScreen');
 		//this.state.start('NbaJamIntro');
 		//this.state.start('NbaJamSpecial');
 		//this.state.start('PacmanIntro');
-		this.state.start('SteveStage');
+		//this.state.start('SteveStage');
 		//this.state.start('TetrisIntro');
 
 
