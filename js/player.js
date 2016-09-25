@@ -26,6 +26,7 @@ Player.prototype = {
 		this.sprite = game.add.sprite(x, y, 'gabe');
 		this.keys = game.input.keyboard.createCursorKeys();
 		game.physics.arcade.enable(this.sprite);
+		this.sprite.ParentRef = this;
 		this.sprite.body.setSize(40, 40, (61-40)/2, (116-40));
 		this.sprite.anchor.setTo(0.5, 0.5);
 		this.sprite.body.velocity.x = 0;
@@ -125,5 +126,24 @@ Player.prototype = {
 		else if (val < 0)
 			val = 0;
 		return val;
+	},
+
+	onHit: function(enemy, me){
+		var pl = me.ParentRef;
+		var e = enemy.ParentRef;
+
+
+		var diffY = pl.sprite.body.y - e.sprite.body.y;
+		var diffX = pl.sprite.body.x - e.sprite.body.x;
+
+		var dir = Math.atan2(diffY, diffX);
+
+		pl.sprite.body.velocity.x += 1400*Math.cos(dir);
+		pl.sprite.body.velocity.y += 1400*Math.sin(dir);
+
+		e.enabled = false;
+		e.sprite.exists = false;
+
+		score.loseHealth();
 	}
 }

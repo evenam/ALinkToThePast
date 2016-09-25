@@ -64,6 +64,7 @@ PacmanIntro.prototype = {
 
 		for (var i = 0; i < this.enemies.length; i++){
 			game.physics.arcade.collide(this.enemies[i].sprite, this.walls);
+			game.physics.arcade.overlap(this.enemies[i].sprite, this.player.sprite, this.player.onHit);
 			this.enemies[i].update();
 			this.enemies[i].sprite.bringToTop();
 		}
