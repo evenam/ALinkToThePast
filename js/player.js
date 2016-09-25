@@ -138,9 +138,13 @@ Player.prototype = {
 
 	updateHit: function() {
 		this.speed = this.limitSpeed(this.speed, 50);
-		if (this.isHit > 0) this.isHit --;
-		else this.isHit = 0;
-		console.log('here')
+		if (this.isHit > 1) {
+			this.isHit --;
+			this.sprite.alpha = (1 + Math.sin(Math.PI * this.isHit / 10)) / 2;
+		} else {
+			this.isHit = 0;
+			this.sprite.alpha = 1;
+		} 
 	},
 
 	onHit: function(enemy, me){
@@ -153,10 +157,11 @@ Player.prototype = {
 
 		var dir = Math.atan2(diffY, diffX);
 
-		pl.sprite.body.velocity.x = 600*Math.cos(dir);
-		pl.sprite.body.velocity.y = 600*Math.sin(dir);
+		pl.sprite.body.velocity.x = 400*Math.cos(dir);
+		pl.sprite.body.velocity.y = 400*Math.sin(dir);
 
-		pl.isHit = 10;
+		e.enabled = false;
+		e.sprite.exists = false;
 
 		score.loseHealth();
 	}

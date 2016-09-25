@@ -50,11 +50,11 @@ NbaJamSpecial.prototype = {
 		var defender4 = new NbaDefender();
 		var defender5 = new NbaDefender();
 
-		defender1.constructor(game, 626 + 0, 168);
-		defender2.constructor(game, 548 + 160, 208);
-		defender3.constructor(game, 468 + 160, 288);
-		defender4.constructor(game, 548 + 160, 368);
-		defender5.constructor(game, 626 + 0, 408);
+		defender1.constructor(game, 200, 168);
+		defender2.constructor(game, 320, 208);
+		defender3.constructor(game, 440, 288);
+		defender4.constructor(game, 560, 368);
+		defender5.constructor(game, 680, 408);
 
 		this.defenders = [
 			defender1,
