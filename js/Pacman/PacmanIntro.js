@@ -60,6 +60,8 @@ PacmanIntro.prototype = {
 	},
 
 	update: function() {
+
+		if(isGameOver) { return ;}
 		var won = true;
 		for(var i = 0; i < this.enemies.length; i++){
 			if(this.enemies[i].enabled){
