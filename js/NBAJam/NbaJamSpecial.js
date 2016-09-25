@@ -87,7 +87,13 @@ NbaJamSpecial.prototype = {
 	},
 
 	update: function() {
-		if(isGameOver) {return;}
+		if(isGameOver) {
+			for(var i=0; i < this.defenders.length; i++){
+				this.defenders[i].sprite.destroy();
+			}
+			return;
+		}
+
 		if(this.timer.seconds <= 0){
 			this.door.visible = true;
 			this.goal.visible = false;

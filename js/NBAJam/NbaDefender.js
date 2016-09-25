@@ -39,6 +39,8 @@ NbaDefender.prototype = {
 
 	update: function() {
 
+		if(isGameOver) { return;}
+
 		if (this.game.state.getCurrentState().ball !== null) {
 			var ball = this.game.state.getCurrentState().ball;
 			game.physics.arcade.overlap(ball.ballSprite, this.sprite, (function(ball, me){
@@ -69,7 +71,7 @@ NbaDefender.prototype = {
 			this.jumpTimer --;
 		if (this.jumpTimer <= 0) {
 			this.jumpTimer = this.jumpTimerMax;
-			this.jumpAnim = this.sprite.animations.play('jump');	
+			this.jumpAnim = this.sprite.animations.play('jump');
 		}
 
 		if(this.jumpAnim === null || !this.jumpAnim.isPlaying){
@@ -79,8 +81,9 @@ NbaDefender.prototype = {
 	},
 
 	updateJump: function() {
+		if(isGameOver) {return;}
 		this.sprite.body.velocity.y = 0;
-		if (this.jumpAnim === null) 
+		if (this.jumpAnim === null)
 			this.jumpAnim = this.sprite.animations.play('jump');
 
 		if (!this.jumpAnim.isPlaying) {

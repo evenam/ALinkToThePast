@@ -57,7 +57,7 @@ GameOver.prototype = {
 	},
 
 	continue: function() {
-		score.value = score.value / 2;
+		score.value = Math.floor(score.value / 2);
 		score.health = 3;
 		score.constructor();
 		this.hide();
