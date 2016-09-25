@@ -9,7 +9,7 @@ Timer.prototype = {
 
 	constructor: function() {
 
-	 this.seconds = 15;
+	 this.seconds = 24;
 	 timer = game.time.create(true);
 	 timer.repeat(1000, 24, this.decrementSeconds, this);
 	 timer.start();

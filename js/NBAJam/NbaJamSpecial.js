@@ -5,15 +5,16 @@ NbaJamSpecial.prototype = {
 	ball: null,
 	player: null,
 	walls: null,
+	timer: null,
 
 	preload: function() {
-		
+
 	},
 
 	create: function() {
 
 		this.walls = game.add.group();
-		this.walls.enableBody = true;	
+		this.walls.enableBody = true;
 
 		var w1 = this.walls.create(0, 0, 'topwall');
 		w1.body.immovable = true;
@@ -58,9 +59,12 @@ NbaJamSpecial.prototype = {
 		];
 
 		this.ball = null;
+		this.timer = new Timer();
+		this.timer.constructor();
 	},
 
 	update: function() {
+		this.timer.update();
 		game.physics.arcade.collide(this.player.sprite, this.walls);
 		this.player.update();
 		for (var i = 0; i < this.defenders.length; i++) {
