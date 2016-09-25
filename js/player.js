@@ -18,6 +18,7 @@ Player.prototype = {
 	sKey: null,
 	dKey: null,
 	shootAnim: null,
+	isHit: 0,
 
 	constructor: function(game, x, y) {
 		this.bullets = [];
@@ -42,10 +43,17 @@ Player.prototype = {
 		this.sprite.animations.add('throwup', [4], 6, false);
 		this.sprite.animations.add('bball', [5], 2, false);
 		this.sprite.animations.play('idle');
+
+		this.isHit = 0;
 	},
 
 	update: function() {
 		if (!this.enabled) return;
+
+		if (this.isHit > 0) {
+			this.updateHit();
+			return;
+		}
 
 		var dirX = 0, dirY = 0, dir = 0;
 		if (this.keys.left.isDown) dirX -= 1;
@@ -128,6 +136,13 @@ Player.prototype = {
 		return val;
 	},
 
+	updateHit: function() {
+		this.speed = this.limitSpeed(this.speed, 50);
+		if (this.isHit > 0) this.isHit --;
+		else this.isHit = 0;
+		console.log('here')
+	},
+
 	onHit: function(enemy, me){
 		var pl = me.ParentRef;
 		var e = enemy.ParentRef;
@@ -138,11 +153,13 @@ Player.prototype = {
 
 		var dir = Math.atan2(diffY, diffX);
 
-		pl.sprite.body.velocity.x += 1400*Math.cos(dir);
-		pl.sprite.body.velocity.y += 1400*Math.sin(dir);
+		pl.sprite.body.velocity.x = 600*Math.cos(dir);
+		pl.sprite.body.velocity.y = 600*Math.sin(dir);
 
 		e.enabled = false;
 		e.sprite.exists = false;
+
+		pl.isHit = 10;
 
 		score.loseHealth();
 	}

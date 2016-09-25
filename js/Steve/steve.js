@@ -87,6 +87,7 @@ Steve.prototype = {
   bullet: null,
   direction: 1,
   openMouthAnim: null,
+  health: 20,
 
 	constructor: function(game, player) {
 		this.state = 0;
@@ -96,6 +97,7 @@ Steve.prototype = {
 
     this.sprite = game.add.sprite(400, 120, 'steve');
     game.physics.arcade.enable(this.sprite);
+    this.sprite.ParentRef = this;
     this.sprite.body.setSize(80, 160, 40, 20);
     this.sprite.anchor.setTo(.5, .5);
     this.generateNormalObject();
@@ -105,7 +107,9 @@ Steve.prototype = {
     this.sprite.animations.add('closeMouth', [2, 1, 0], 8, false);
     this.sprite.animations.add('tell', [4], 6, false);
     this.sprite.animations.add('zap', [5, 4, 5, 4], 2, false);
-    this.sprite.animations.add('hurt', [5], 2, false);
+    this.sprite.animations.add('hurt', [4, 6, 4, 6, 4, 6, 4, 6, 4, 6, 4, 6, 4, 6], 20, false);
+
+    this.health = 20;
 	},
 
 	update: function() {
@@ -164,7 +168,7 @@ Steve.prototype = {
 
 	generateNormalObject: function() {
 		this.normal = {
-			nextStage: 1,//(Math.random() > .33 ? 1 : 2),
+			nextStage: (Math.random() > .33 ? 1 : 2),
 			current: 0,
 			timer: 120
 		}
@@ -173,9 +177,13 @@ Steve.prototype = {
   onHit: function(bullet, me){
     me.animations.play('hurt');
     //deduct his health
-
+    var steve = me.ParentRef;
     var b = bullet.ParentRef;    
     b.destroy();
+    console.log(steve.health);
+    steve.health --;
+    if (steve.health <= 0)
+      game.state.start('FinalScene');
     
   }
 };
