@@ -206,7 +206,7 @@ Steve.prototype = {
 
 	generateNormalObject: function() {
 		this.normal = {
-			nextStage: 2, //(Math.random() > .33 ? 1 : 2),
+			nextStage: (Math.random() > .33 ? 1 : 2),
 			current: 0,
 			timer: 120
 		}
