@@ -26,7 +26,8 @@ Score.prototype = {
 	},
 
 	playSound: function(track){
-		sfx = new Phaser.Sound(game, track, 1, false);
+		this.sfx = new Phaser.Sound(game, track, 1, false);
+		this.sfx.play();
 	},
 
 	initHealth: function() {
