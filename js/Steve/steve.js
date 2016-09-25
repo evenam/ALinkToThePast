@@ -79,12 +79,12 @@ Steve.prototype = {
 
 	state: 0,
 	normal: null,
-	lazer: null,
 	tell: 0,
 
 	game: null,
 	player: null,
   bullet: null,
+  lazer: null,
   direction: 1,
   openMouthAnim: null,
   health: 20,
@@ -101,24 +101,27 @@ Steve.prototype = {
     this.sprite.body.setSize(80, 160, 40, 20);
     this.sprite.anchor.setTo(.5, .5);
     this.generateNormalObject();
+    this.lazer = false;
 
     this.sprite.animations.add('idle', [0], 4, true);
     this.sprite.animations.add('openMouth', [1, 2, 3], 8, false);
     this.sprite.animations.add('closeMouth', [2, 1, 0], 8, false);
-    this.sprite.animations.add('tell', [4], 6, false);
-    this.sprite.animations.add('zap', [5, 4, 5, 4], 2, false);
-    this.sprite.animations.add('hurt', [4, 6, 4, 6, 4, 6, 4, 6, 4, 6, 4, 6, 4, 6], 20, false);
+    this.sprite.animations.add('tell', [4, 5, 4], 5, false);
+    this.sprite.animations.add('zap', [5, 4, 5, 4], 10, true);
+    this.sprite.animations.add('hurt', [4, 6, 4, 6, 0], 8, false);
 
     this.health = 20;
 	},
 
 	update: function() {
+
+    if (this.bullet) this.bullet.update();
          if (this.state == 0) this.updateNormal();
     else if (this.state == 1) this.updateFling();
     else if (this.state == 2) this.updateLazerTell();
     else if (this.state == 3) this.updateLazer();
 
-    if (this.bullet) this.bullet.update();
+    console.log(this.state);
 
 	},
 
@@ -129,6 +132,7 @@ Steve.prototype = {
     this.sprite.body.velocity.x = 100 * this.direction;
 		if (this.normal.current >= this.normal.timer)
 			this.state = this.normal.nextStage;
+    this.lazer = false;
 	},
 
 	updateFling: function() {
@@ -157,30 +161,46 @@ Steve.prototype = {
   },
 
 	updateLazerTell: function() {
+    this.sprite.body.velocity.x = 0;
+    this.sprite.body.velocity.y = 0;
+
 		// play tell aniumation
     if(this.openMouthAnim === null ){
-      this.openMouthAnim = this.sprite.animations.play('openMouth');
-    } else if(this.openMouthAnim !== null && this.openMouthAnim.isPlaying){
+      var player = game.state.getCurrentState().player;
+      var diffX = player.sprite.body.x - this.sprite.x;
+      var diffY = player.sprite.body.y - this.sprite.y;
+      var dir = Math.atan2(-diffY, diffX);
+      console.log(dir * 180 / Math.PI);
+      this.tell = dir;
+      this.openMouthAnim = this.sprite.animations.play('tell');
+    } else if(this.openMouthAnim !== null && !this.openMouthAnim.isPlaying){
       this.state = 3;
     }
 
 	},
 
 	updateLazer: function() {
-		/*this.tell = 0;
-		this.state = 0;*/
-    var player = game.state.getCurrentState().player;
-    var diffX = player.sprite.body.x - this.sprite.x;
-    var diffY = player.sprite.body.y - this.sprite.y;
-    var dir = Math.atan2(diffY, diffX);
-    this.bullet = new EnemyBullet();
-    this.bullet.constructor(this.game, this.sprite.body.x + 40, this.sprite.body.y + 130, dir, 'SteveLazer');
-    this.sprite.animations.play('closeMouth');
-    this.openMouthAnim = null;
 
-		// fire the lazer
-		this.generateNormalObject();
-    this.state = 0;
+    // fire the lazer
+    if ((this.bullet === null || this.bullet.sprite === null) && this.lazer === true) {
+      this.generateNormalObject();
+      this.bullet = null;
+      this.state = 0;
+      this.lazer = false;
+    } else if (this.bullet === null && this.lazer === false ) {
+  		/*this.tell = 0;
+  		this.state = 0;*/
+      var player = game.state.getCurrentState().player;
+      var diffX = player.sprite.body.x - this.sprite.x;
+      var diffY = player.sprite.body.y - this.sprite.y;
+      var dir = Math.atan2(-diffY, diffX);
+      var rotDir = Math.abs(dir - this.tell) / (dir - this.tell);
+      this.bullet = new SteveLazer();
+      this.bullet.constructor(this.game, this.sprite.body.x + 40, this.sprite.body.y + 130, 3 * Math.PI / 2 - this.tell , -rotDir);
+      this.sprite.animations.play('zap');
+      this.openMouthAnim = null;
+      this.lazer = true;
+    }
 	},
 
 	generateNormalObject: function() {
@@ -189,6 +209,7 @@ Steve.prototype = {
 			current: 0,
 			timer: 120
 		}
+    this.sprite.animations.play('idle')
 	},
 
   onHit: function(bullet, me){
