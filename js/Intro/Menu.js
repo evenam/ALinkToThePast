@@ -58,7 +58,6 @@ Menu.prototype = {
 
 	create: function() {
 		var button = this.add.button(0, 0, 'bg', this.startGame, this);
-		button.scale.setTo(800 / 3507, 600 / 2550);
 		game.physics.startSystem(Phaser.Physics.ARCADE);
 	},
 
