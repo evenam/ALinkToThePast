@@ -60,10 +60,16 @@ PacmanIntro.prototype = {
 	},
 
 	update: function() {
-		score.draw();
-		if(isGameOver) { return; }
-
-		if(score.value >= 50){
+		var won = true;
+		for(var i = 0; i < this.enemies.length; i++){
+			if(this.enemies[i].enabled){
+				won = false;
+			}
+		}
+		if(won){
+			if(this.player.sprite.body.x > 780){
+				game.state.start('BeforeNBA');
+			}
 			this.door.visible = true;
 		} else {
 			game.physics.arcade.collide(this.player.sprite, this.door);
@@ -89,9 +95,6 @@ PacmanIntro.prototype = {
 			}
 		}
 
-		if(this.player.sprite.body.x > 780){
-			game.state.start('BeforeNBA');
-		}
-
+		score.draw();
 	}
 }
