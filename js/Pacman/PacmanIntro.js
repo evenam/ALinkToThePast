@@ -63,7 +63,7 @@ PacmanIntro.prototype = {
 		if(score.value >= 50){
 			this.door.visible = true;
 		} else {
-			game.physics.arcade.collide(this.player.sprite, this.door);	
+			game.physics.arcade.collide(this.player.sprite, this.door);
 		}
 		this.player.update();
 		game.physics.arcade.collide(this.player.sprite, this.walls);
@@ -86,20 +86,9 @@ PacmanIntro.prototype = {
 			}
 		}
 
-
-		score.draw();
 		if(this.player.sprite.body.x > 780){
 			game.state.start('NbaJamSpecial');
 		}
-
-		if (!(this.explosion === undefined)) {
-			this.explosion.forEach(function(e) {
-					e.update();
-			});
-
-			this.explosion = this.explosion.filter(function(e) {
-				return e.anim.isPlaying;
-			});
-		}
+		score.draw();
 	}
 }

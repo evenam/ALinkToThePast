@@ -4,7 +4,7 @@ Score.prototype = {
 	value: 0,
 	text: null,
 	healthText: null,
-	health: null,
+	health: 3,
 	healthArray: null,
 
 
@@ -12,7 +12,7 @@ Score.prototype = {
 
 		this.healthText = game.add.text(30,70, 'Health:',
 			{font: '23px Helvetica', fill: '#ffffff', fontVariant:'small-caps'});
-		this.health = 3;
+		// this.health = 3;
 		this.healthArray = new Array();
 		this.initHealth();
 	},

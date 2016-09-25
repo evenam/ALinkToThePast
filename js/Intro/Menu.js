@@ -63,8 +63,8 @@ Menu.prototype = {
 	startGame: function() {
 
 		// this.state.start('NbaJamIntro');
-		this.state.start('NbaJamSpecial');
-		//this.state.start('PacmanIntro');
+		// this.state.start('NbaJamSpecial');
+		this.state.start('PacmanIntro');
 		//this.state.start('SteveStage');
 		//this.state.start('TetrisIntro');
 

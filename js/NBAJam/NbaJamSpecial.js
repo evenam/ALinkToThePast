@@ -81,6 +81,9 @@ NbaJamSpecial.prototype = {
 		var px = this.player.sprite.body.x;
 		this.pointRange = game.add.text(30, 540, (px > 400 ? '1 Point Range' : '2 point range'),
 			{font: '25px Press Start 2P', fill: 'white', stroke: 'red', strokeThickness: 3});
+
+			score.constructor();
+
 	},
 
 	update: function() {
@@ -92,7 +95,7 @@ NbaJamSpecial.prototype = {
 				game.state.start('SteveStage');
 			}
 		} else {
-			game.physics.arcade.collide(this.player.sprite, this.door);	
+			game.physics.arcade.collide(this.player.sprite, this.door);
 		}
 		this.timer.update();
 		game.physics.arcade.collide(this.player.sprite, this.walls);
@@ -122,7 +125,7 @@ NbaJamSpecial.prototype = {
 		var px = this.player.sprite.body.x;
 		this.pointRange = game.add.text(30, 550, (px > 400 ? '1 Point' : '2 Point'),
 			{font: '25px Press Start 2P', fill: 'white', stroke: 'red', strokeThickness: 3});
-	
+
 
 
 		objects = [...this.defenders.map(function(e) { return e.sprite; }), this.player.sprite];
