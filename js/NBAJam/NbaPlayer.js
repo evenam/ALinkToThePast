@@ -97,7 +97,7 @@ NbaPlayer.prototype = {
 
 	shootBall: function() {
 		if (!this.enabled) return;
-		if (!this.game.state.getCurrentState().timer.seconds === 0) return;
+		if (this.game.state.getCurrentState().timer.seconds <= 0) return;
 
 		if (this.game.state.getCurrentState().ball === null) {
 			this.shootAnim = this.sprite.animations.play('bball');
