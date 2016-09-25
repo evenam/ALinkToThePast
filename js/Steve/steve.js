@@ -215,6 +215,8 @@ Steve.prototype = {
 
   onHit: function(bullet, me){
     me.animations.play('hurt');
+    var sound = game.add.audio('hurt_steve');
+      sound.play();
     //deduct his health
     var steve = me.ParentRef;
     var b = bullet.ParentRef;    
