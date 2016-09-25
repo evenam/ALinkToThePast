@@ -39,19 +39,6 @@ PacmanIntro.prototype = {
 
 		this.cherries = [];
 
-		for(var i = 0; i < 3; i++){
-			var ch = new Collectable();
-			ch.constructor(30 + i*100, 30 + i*100, 10, 'cherry');
-			this.cherries.push(ch);
-		}
-
-		this.door = game.add.sprite(800-80, 260, 'door');
-		game.physics.arcade.enable(this.door);
-		this.door.body.setSize(40,40,20,0);
-		this.door.scale.setTo(2, 2);
-		this.door.visible = false;
-		this.door.body.immovable = true;
-
 		this.player = new Player();
 		this.player.constructor(game, 100, 100);
 
@@ -64,6 +51,12 @@ PacmanIntro.prototype = {
 		}
 
 		score.constructor();
+		this.door = game.add.sprite(800-80, 260, 'door');
+		game.physics.arcade.enable(this.door);
+		this.door.body.setSize(40,40,20,0);
+		this.door.scale.setTo(2, 2);
+		this.door.visible = false;
+		this.door.body.immovable = true;
 	},
 
 	update: function() {

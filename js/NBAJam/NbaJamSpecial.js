@@ -9,6 +9,8 @@ NbaJamSpecial.prototype = {
 	score: 0,
 	clock: null,
 	pointRange: null,
+	door: null,
+	goal: null,
 
 	preload: function() {
 
@@ -36,9 +38,9 @@ NbaJamSpecial.prototype = {
 			var w4 = this.walls.create(i*(800-40), 600 - 40 - 220, 'sidewall');
 			w4.body.immovable = true;
 		}
-
 		game.add.image(0, 0, 'BasketBallCourt');
-		game.add.image(760, 280, 'BasketBallHoop');
+		this.goal = game.add.image(760, 280, 'BasketBallHoop');
+
 		this.player = new NbaPlayer();
 		this.player.constructor(game, 60, 260);
 
@@ -66,6 +68,13 @@ NbaJamSpecial.prototype = {
 		this.timer = new Timer();
 		this.timer.constructor();
 
+		this.door = game.add.sprite(800-80+14, 260, 'door');
+		game.physics.arcade.enable(this.door);
+		this.door.body.setSize(40,40,20-7,0);
+		this.door.scale.setTo(2, 2);
+		this.door.visible = false;
+		this.door.body.immovable = true;
+
 		this.clock = game.add.text(375, 540, (this.score < 10 ? '0' : '') + this.score.toString(),
 			{font: '25px Press Start 2P', fill: 'white', stroke: 'red', strokeThickness: 3});
 
@@ -75,6 +84,16 @@ NbaJamSpecial.prototype = {
 	},
 
 	update: function() {
+		if(this.timer.seconds <= 0){
+			this.door.visible = true;
+			this.goal.visible = false;
+			if(this.player.sprite.body.x > 780){
+				//Switch to steve
+				game.state.start('SteveStage');
+			}
+		} else {
+			game.physics.arcade.collide(this.player.sprite, this.door);	
+		}
 		this.timer.update();
 		game.physics.arcade.collide(this.player.sprite, this.walls);
 		this.player.update();
