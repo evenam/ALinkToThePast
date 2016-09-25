@@ -45,8 +45,10 @@ NbaDefender.prototype = {
 			var ball = this.game.state.getCurrentState().ball;
 			game.physics.arcade.overlap(ball.ballSprite, this.sprite, (function(ball, me){
 				return function() {
-					if (ball.height < 140)
+					if (ball.height < 140){
 						ball.removeBall();
+						score.playSound('block');
+					}
 				}
 			})(ball, this));
 		}

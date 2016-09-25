@@ -7,6 +7,7 @@ Score.prototype = {
 	health: 3,
 	healthArray: null,
 	music: null,
+	sfx: null,
 
 
 	constructor: function(track) {
@@ -25,7 +26,7 @@ Score.prototype = {
 	},
 
 	playSound: function(track){
-		new Phaser.Sound(game, track, 1, false);
+		sfx = new Phaser.Sound(game, track, 1, false);
 	},
 
 	initHealth: function() {

@@ -75,6 +75,10 @@ Menu.prototype = {
 		game.load.audio('lazer_sound', 'Assets/sfx/steve_lazer.ogg');
 		game.load.audio('shout_sound', 'Assets/sfx/steve_shout.ogg');
 		game.load.audio('tell_sound', 'Assets/sfx/steve_tell.ogg');
+		game.load.audio('shoot', 'Assets/sfx/shoot.ogg');
+		game.load.audio('pickup', 'Assets/sfx/collect.ogg');
+		game.load.audio('dmg1', 'Assets/sfx/phit1.ogg');
+		game.load.audio('dmg2', 'Assets/sfx/phit2.ogg');
 
 		game.load.audio('title_music', 'Assets/music/title_music.ogg');
 		game.load.audio('steve_music', 'Assets/music/steve.ogg');

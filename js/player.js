@@ -171,5 +171,8 @@ Player.prototype = {
 		pl.isHit = 20;
 
 		score.loseHealth();
+
+		var which = Math.floor((Math.random()*2 + 1));
+		score.playSound('hit'+which);
 	}
 }

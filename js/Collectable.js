@@ -34,6 +34,7 @@ Collectable.prototype = {
 		//me is a reference to the sprite
 		var ch = me.CollectableRef;
 		if(ch.enabled){
+			score.playSound('pickup');
 			ch.disable();
 			score.value += ch.value;
 		}

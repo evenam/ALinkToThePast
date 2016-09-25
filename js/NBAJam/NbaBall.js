@@ -62,6 +62,7 @@ NbaBall.prototype = {
 			splosion.constructor(this.game, this.ballSprite.body.x, this.ballSprite.body.y - 24, .5);
 
 			this.removeBall();
+			score.playSound("score");
 			if (this.initX < 400) {
 				this.game.state.getCurrentState().score ++;
 				score.value++;

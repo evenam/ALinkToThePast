@@ -19,6 +19,7 @@ Bullet.prototype = {
 
 		this.sprite.angle = direction * 180/Math.PI;
 		this.game = game;
+		score.playSound('shoot');
 	},
 
 	update: function() {
