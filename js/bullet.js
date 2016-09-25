@@ -37,6 +37,9 @@ Bullet.prototype = {
 			this.sprite = game.add.sprite(x, y, 'BasketBullet');
 			this.sprite.scale.set(0.75, 0.75);
 			return;
+		} else if(game.state.current === 'TetrisIntro'){
+			this.sprite = game.add.sprite(x, y, 'WhiteTetrisBullet');
+			return;
 		}
 		this.sprite = game.add.sprite(x,y,'bullet');
 	}
