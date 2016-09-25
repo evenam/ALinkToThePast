@@ -33,11 +33,14 @@ Score.prototype = {
 	},
 
 	loseHealth: function() {
-		this.health--;
 		if(this.health === 1){
 			//Womp, Womp, Womp... Game Over!
 			this.nukeHealthArray();
+			gameOverScreen.show();
 			return;
+		}
+		else {
+			this.health--;
 		}
 		console.log(this.health);
 		var elemToDestroy = this.healthArray.pop();

@@ -87,6 +87,7 @@ NbaJamSpecial.prototype = {
 	},
 
 	update: function() {
+		if(isGameOver) {return;}
 		if(this.timer.seconds <= 0){
 			this.door.visible = true;
 			this.goal.visible = false;
