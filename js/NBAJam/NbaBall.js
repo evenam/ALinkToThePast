@@ -58,11 +58,9 @@ NbaBall.prototype = {
 
 		if (this.pathIndex > 1) {
 			this.removeBall();
-			if (this.game.state.getCurrentState().timer.seconds > -2) {
 			if (this.initX < 400)
 				this.game.state.getCurrentState().score ++;
 				this.game.state.getCurrentState().score ++;
-			}
 		}
 	},
 
