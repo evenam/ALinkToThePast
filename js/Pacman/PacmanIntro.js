@@ -60,6 +60,9 @@ PacmanIntro.prototype = {
 	},
 
 	update: function() {
+		score.draw();
+		if(isGameOver) { return; }
+
 		if(score.value >= 50){
 			this.door.visible = true;
 		} else {
@@ -89,6 +92,6 @@ PacmanIntro.prototype = {
 		if(this.player.sprite.body.x > 780){
 			game.state.start('NbaJamSpecial');
 		}
-		score.draw();
+
 	}
 }

@@ -3,6 +3,8 @@ var game;
 game = new Phaser.Game(800, 600, Phaser.CANVAS);
 
 var score = new Score();
+var gameOverScreen = new GameOver();
+var isGameOver = false;
 
 game.state.add('Menu', Menu);
 //game.state.add('Game', Game);
@@ -18,7 +20,6 @@ game.state.add('PacmanIntro', PacmanIntro);
 game.state.add('SteveStage', SteveStage);
 // game.state.add('PacmanMain', PacmanMain);
 // game.state.add('PacmanBoss', PacmanBoss);
-// game.state.add('GameOver', GameOver);
 // game.state.add('ShadyTree', ShadyTree);
 game.state.start('Menu');
 score.constructor();

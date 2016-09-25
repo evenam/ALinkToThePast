@@ -48,6 +48,8 @@ Player.prototype = {
 	},
 
 	update: function() {
+
+		if(isGameOver){return;}
 		if (!this.enabled) return;
 
 		if (this.isHit > 0) {
@@ -66,12 +68,12 @@ Player.prototype = {
 
 		this.sprite.body.velocity.x += this.accel * Math.cos(dir);
 		this.sprite.body.velocity.y += this.accel * Math.sin(dir);
-		
+
 		if (dirX === 0 && dirY === 0) {
 			if(this.shootAnim === null || !this.shootAnim.isPlaying){
 				this.sprite.animations.play('idle');
 			}
-			newSpeed = 1; 
+			newSpeed = 1;
 		}
 		else {
 			newSpeed = Math.sqrt(this.sprite.body.velocity.x * this.sprite.body.velocity.x + this.sprite.body.velocity.y * this.sprite.body.velocity.y);
@@ -84,7 +86,7 @@ Player.prototype = {
 				this.sprite.scale.setTo(dirX, 1);
 			}
 			if(dirY !== 0){
-				this.sprite.animations.play('right');			
+				this.sprite.animations.play('right');
 			}
 		}
 
@@ -98,7 +100,7 @@ Player.prototype = {
 
 		if (this.shotTimer > 0)
 			this.shotTimer --;
-		if (this.shotTimer < 0) 
+		if (this.shotTimer < 0)
 			this.shotTimer = 0;
 		if (this.shotTimer === 0 && (this.wKey.isDown || this.aKey.isDown || this.sKey.isDown || this.dKey.isDown)) {
 			this.shoot();
@@ -144,7 +146,7 @@ Player.prototype = {
 		} else {
 			this.isHit = 0;
 			this.sprite.alpha = 1;
-		} 
+		}
 	},
 
 	onHit: function(enemy, me){

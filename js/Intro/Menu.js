@@ -17,6 +17,11 @@ Menu.prototype = {
 		game.load.image('life', 'Assets/gfx/life.png');
 		game.load.image('bball_shadow', 'Assets/gfx/NBAjam_basketballshadow2.png');
 		game.load.image('door', 'Assets/gfx/door.png');
+		game.load.image('blackBg', 'Assets/gfx/black_bg.png');
+		game.load.image('continue', 'Assets/gfx/continue_yes.png');
+		game.load.image('quit', 'Assets/gfx/continue_no.png');
+
+
 
 		game.load.image('pacmanghost1', 'Assets/gfx/pacmanghost1.png');
 		game.load.image('pacmanghost2', 'Assets/gfx/pacmanghost2.png');
@@ -63,12 +68,13 @@ Menu.prototype = {
 	},
 
 	startGame: function() {
+		gameOverScreen.constructor(); // trust me.
 
 		// this.state.start('NbaJamIntro');
 		// this.state.start('NbaJamSpecial');
-		//this.state.start('PacmanIntro');
+		this.state.start('PacmanIntro');
 		//this.state.start('SteveStage');
-		this.state.start('TetrisIntro');
+		// this.state.start('TetrisIntro');
 
 	}
 
