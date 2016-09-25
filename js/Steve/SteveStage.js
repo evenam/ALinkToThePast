@@ -15,6 +15,8 @@ SteveStage.prototype = {
 
 		this.steve = new Steve();
 		this.steve.constructor(this.game, this.player);
+
+		this.player.sprite.body.collideWorldBounds = true;
 	},
 
 	update: function() {
