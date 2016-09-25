@@ -27,7 +27,7 @@ PacmanIntro.prototype = {
 			var w3 = this.walls.create(i*(800-40), 40, 'sidewall');
 			w3.body.immovable = true;
 			if(i != 1){
-				var w5 = this.walls.create(i*(800-40), 80+220, 'sidewall');
+				var w5 = this.walls.create(i*(800-40), 40+220, 'sidewall');
 				w5.body.immovable = true;
 			}
 			var w4 = this.walls.create(i*(800-40), 600 - 40 - 220, 'sidewall');
