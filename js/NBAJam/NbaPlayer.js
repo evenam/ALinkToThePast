@@ -24,7 +24,10 @@ NbaPlayer.prototype = {
 		this.sprite.animations.add('bball', [5], 2, false);
 		this.sprite.animations.play('idle');
 		this.keys = game.input.keyboard.createCursorKeys();
+
 		game.physics.arcade.enable(this.sprite);
+		this.sprite.body.setSize(40, 40, (61-40)/2, (116-40));
+
 		this.sprite.anchor.setTo(0.5, 0.5);
 		this.sprite.body.velocity.x = 0;
 		this.sprite.body.velocity.y = 0;
@@ -99,7 +102,7 @@ NbaPlayer.prototype = {
 			this.shootAnim = this.sprite.animations.play('bball');
 			this.sprite.scale.setTo(1,1);
 			var ball = new NbaBall();
-			ball.constructor(this.game, this.sprite.body.x, this.sprite.body.y, 778 , 280);
+			ball.constructor(this.game, this.sprite.x+20, this.sprite.y-60, 770 , 280);
 			this.game.state.getCurrentState().ball = ball;
 			this.shoot = 30;
 		}

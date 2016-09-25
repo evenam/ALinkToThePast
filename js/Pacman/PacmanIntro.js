@@ -5,6 +5,7 @@ PacmanIntro.prototype = {
 	cherries: null,
 	enemies: null,
 	walls: null,
+	door: null,
 
 	preload: function() {
 	},
@@ -28,7 +29,7 @@ PacmanIntro.prototype = {
 			var w4 = this.walls.create(i*(800-40), 600 - 40 - 220, 'sidewall');
 			w4.body.immovable = true;
 		}
-		this.add.image(0, 0, "PacmanIntroBg");
+		this.add.image(0, 0, "pacground");
 		// this.add.text(10, 10, "PacmanIntro", {font: '30px Helvetica', fill: '#ffffff'});
 
 
@@ -40,6 +41,9 @@ PacmanIntro.prototype = {
 			this.cherries.push(ch);
 		}
 
+		this.door = game.add.sprite(800-80, 260, 'door');
+		this.door.scale.setTo(2, 2);
+
 		this.player = new Player();
 		this.player.constructor(game, 100, 100);
 
@@ -47,9 +51,8 @@ PacmanIntro.prototype = {
 
 		for(var i = 0; i < 5; i++){
 			var en = new Enemy();
-			en.constructor(game, 50 + Math.floor(Math.random() * 400), 50 + Math.floor(Math.random() * 400), this.player, 1);
+			en.constructor(game, 350 + Math.floor(Math.random() * 400), 150 + Math.floor(Math.random() * 400), this.player, 1);
 			this.enemies.push(en);
-			en.sprite.z = 1;
 		}
 
 		score.constructor();
@@ -60,6 +63,8 @@ PacmanIntro.prototype = {
 		game.physics.arcade.collide(this.player.sprite, this.walls);
 
 		for (var i = 0; i < this.enemies.length; i++){
+			game.physics.arcade.collide(this.enemies[i].sprite, this.walls);
+			game.physics.arcade.overlap(this.enemies[i].sprite, this.player.sprite, this.player.onHit);
 			this.enemies[i].update();
 			this.enemies[i].sprite.bringToTop();
 		}
@@ -75,6 +80,10 @@ PacmanIntro.prototype = {
 			}
 		}
 
+
 		score.draw();
+		if(this.player.sprite.body.x > 780){
+			game.state.start('NbaJamSpecial');
+		}
 	}
 }

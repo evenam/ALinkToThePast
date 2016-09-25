@@ -7,7 +7,7 @@ Player.prototype = {
 	keys: null,
 	maxVel: 300,
 	accel: 100,
-	maxShotTimer: 10,
+	maxShotTimer: 30,
 	speed: 0,
 	direction: 0,
 	game: null,
@@ -25,9 +25,10 @@ Player.prototype = {
 		this.enabled = true;
 		this.sprite = game.add.sprite(x, y, 'gabe');
 		this.keys = game.input.keyboard.createCursorKeys();
-		this.sprite.anchor.setTo(0.5, 0.5);
 		game.physics.arcade.enable(this.sprite);
-		this.sprite.body.collideWorldBounds = true;
+		this.sprite.ParentRef = this;
+		this.sprite.body.setSize(40, 40, (61-40)/2, (116-40));
+		this.sprite.anchor.setTo(0.5, 0.5);
 		this.sprite.body.velocity.x = 0;
 		this.sprite.body.velocity.y = 0;
 		this.game = game;
@@ -111,7 +112,7 @@ Player.prototype = {
 
 		this.shotTimer = this.maxShotTimer;
 		var bullet = new Bullet();
-		bullet.constructor(this.game, this.sprite.body.x, this.sprite.body.y, dir);
+		bullet.constructor(this.game, this.sprite.x, this.sprite.y, dir);
 		this.bullets.push(bullet);
 	},
 
@@ -125,5 +126,24 @@ Player.prototype = {
 		else if (val < 0)
 			val = 0;
 		return val;
+	},
+
+	onHit: function(enemy, me){
+		var pl = me.ParentRef;
+		var e = enemy.ParentRef;
+
+
+		var diffY = pl.sprite.body.y - e.sprite.body.y;
+		var diffX = pl.sprite.body.x - e.sprite.body.x;
+
+		var dir = Math.atan2(diffY, diffX);
+
+		pl.sprite.body.velocity.x += 1400*Math.cos(dir);
+		pl.sprite.body.velocity.y += 1400*Math.sin(dir);
+
+		e.enabled = false;
+		e.sprite.exists = false;
+
+		score.loseHealth();
 	}
 }

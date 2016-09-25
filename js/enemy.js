@@ -17,7 +17,9 @@ Enemy.prototype = {
 	state: 0,
 
 	constructor: function(game, x, y, player, type) {
-		this.sprite = game.add.sprite(x, y, 'enemy');
+		var ranNum = Math.floor(Math.random() * 5 + 1);
+		var sprite = "pacmanghost" + ranNum;
+		this.sprite = game.add.sprite(x, y, sprite);
 		game.physics.arcade.enable(this.sprite);
 		this.sprite.ParentRef = this;
 
