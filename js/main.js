@@ -19,5 +19,7 @@ game.state.add('BeforePacman', BeforePacman);
 game.state.add('BeforeNBA', BeforeNBA);
 game.state.add('BeforeTetris', BeforeTetris);
 game.state.add('BeforeSteve', BeforeSteve);
+
+game.state.add('FinalStage', FinalStage);
 game.state.start('Menu');
 score.constructor();
