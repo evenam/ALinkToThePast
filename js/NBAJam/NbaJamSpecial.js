@@ -130,6 +130,16 @@ NbaJamSpecial.prototype = {
 		objects.sort(function(a, b) { return a.body.y - b.body.y; });
 		objects.forEach(function(e) { return e.bringToTop(); });
 		if (this.ball) this.ball.sprite.bringToTop();
+
+		if (!(this.explosion === undefined)) {
+			this.explosion.forEach(function(e) {
+					e.update();
+			});
+
+			this.explosion = this.explosion.filter(function(e) {
+				return e.anim.isPlaying;
+			});
+		}
 		
 	}
 }
