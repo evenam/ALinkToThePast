@@ -47,7 +47,7 @@ Menu.prototype = {
 		// default enemy
 		game.load.image('enemy', 'Assets/gfx/monster.png');
 
-		//game.load.image('SteveLazer', 'Assets/gfx/steve/lazer.png');
+		game.load.image('SteveLazer', 'Assets/gfx/steve/steve_lazer.png');
 		game.load.image('WindowsBullet', 'Assets/gfx/steve/steve_windowsbullest.png');
 		game.load.image('WhiteTetrisBullet', 'Assets/gfx/tetris_whiteprojectile.png');
 		game.load.image('RedTetrisBullet', 'Assets/gfx/tetris_projectile.png');
@@ -66,8 +66,8 @@ Menu.prototype = {
 		// this.state.start('NbaJamIntro');
 		// this.state.start('NbaJamSpecial');
 		//this.state.start('PacmanIntro');
-		//this.state.start('SteveStage');
-		this.state.start('TetrisIntro');
+		this.state.start('SteveStage');
+		//this.state.start('TetrisIntro');
 
 	}
 
