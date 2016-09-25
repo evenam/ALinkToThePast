@@ -34,6 +34,11 @@ NbaBall.prototype = {
 	},
 
 	update: function() {
+
+		if(isGameOver){
+			this.sprite.destroy();
+			return;
+		}
 		this.pathIndex += 1.0 / 90.0;
 
 		var averageX = (this.destX + this.initX) / 2;
