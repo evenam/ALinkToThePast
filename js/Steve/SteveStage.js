@@ -9,6 +9,7 @@ SteveStage.prototype = {
 	},
 
 	create: function() {
+		game.add.image(0, 0, 'steveground');
 		this.player = new Player();
 		this.player.constructor(game, 100, 100);
 
