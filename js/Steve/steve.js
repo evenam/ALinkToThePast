@@ -222,8 +222,11 @@ Steve.prototype = {
     var b = bullet.ParentRef;    
     b.destroy();
     steve.health --;
-    if (steve.health <= 0)
-      game.state.start('FinalStage');
+    if (steve.health <= 0) {
+      score.value += 100;
+      game.state.start('FinalScene');
+      console.log('here')
+    }
     
   }
 };
