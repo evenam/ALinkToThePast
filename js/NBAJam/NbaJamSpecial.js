@@ -6,6 +6,9 @@ NbaJamSpecial.prototype = {
 	player: null,
 	walls: null,
 	timer: null,
+	score: 0,
+	clock: null,
+	pointRange: null,
 
 	preload: function() {
 
@@ -15,6 +18,7 @@ NbaJamSpecial.prototype = {
 
 		this.walls = game.add.group();
 		this.walls.enableBody = true;
+		this.score = 0;
 
 		var w1 = this.walls.create(0, 0, 'topwall');
 		w1.body.immovable = true;
@@ -61,6 +65,13 @@ NbaJamSpecial.prototype = {
 		this.ball = null;
 		this.timer = new Timer();
 		this.timer.constructor();
+
+		this.clock = game.add.text(375, 540, (this.score < 10 ? '0' : '') + this.score.toString(),
+			{font: '25px Press Start 2P', fill: 'white', stroke: 'red', strokeThickness: 3});
+
+		var px = this.player.sprite.body.x;
+		this.pointRange = game.add.text(30, 540, (px > 400 ? '1 Point Range' : '2 point range'),
+			{font: '25px Press Start 2P', fill: 'white', stroke: 'red', strokeThickness: 3});
 	},
 
 	update: function() {
@@ -78,11 +89,28 @@ NbaJamSpecial.prototype = {
 			this.ball.sprite.bringToTop();
 			this.ball.update();
 		}
-/*
-		objects = [...this.defenders, this.player];
-		if (this.ball !== null) objects.push(this.ball);
-		objects.sort((a, b) => a.sprite.body.y - b.sprite.body.y);
-		objects.forEach(e => e.sprite.bringToTop());
-		*/
+
+		if (this.timer.seconds === 0 && this.score > 3) {
+			// enable door
+
+		}
+
+		this.clock.destroy();
+		this.clock = game.add.text(350, 520, 'PTS:\n' + (this.score < 10 ? ' 0' : ' ') + this.score.toString(),
+			{font: '25px Press Start 2P', fill: 'white', stroke: 'red', strokeThickness: 3});
+
+		this.pointRange.destroy();
+		var px = this.player.sprite.body.x;
+		this.pointRange = game.add.text(30, 550, (px > 400 ? '1 Point' : '2 Point'),
+			{font: '25px Press Start 2P', fill: 'white', stroke: 'red', strokeThickness: 3});
+	
+
+
+		objects = [...this.defenders.map(function(e) { return e.sprite; }), this.player.sprite];
+		if (this.ball !== null) objects.push(this.ball.ballSprite);
+		objects.sort(function(a, b) { return a.body.y - b.body.y; });
+		objects.forEach(function(e) { return e.bringToTop(); });
+		if (this.ball) this.ball.sprite.bringToTop();
+		
 	}
 }
