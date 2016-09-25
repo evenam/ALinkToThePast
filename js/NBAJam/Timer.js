@@ -31,11 +31,9 @@ Timer.prototype = {
 		if(this.seconds < 10){
 			this.clock = game.add.text(375,30, '0' + this.seconds.toString(),
 				{font: '25px Press Start 2P', fill: 'white', stroke: 'red', strokeThickness: 3});
-				console.log(this.seconds);
 		} else {
 		this.clock = game.add.text(375,30, this.seconds,
 			{font: '25px Press Start 2P', fill: 'white', stroke: 'red', strokeThickness: 5});
-			console.log(this.seconds);
 		}
 	}
 

@@ -26,6 +26,10 @@ PacmanIntro.prototype = {
 		for(var i = 0; i < 2; i++){
 			var w3 = this.walls.create(i*(800-40), 40, 'sidewall');
 			w3.body.immovable = true;
+			if(i != 1){
+				var w5 = this.walls.create(i*(800-40), 40+220, 'sidewall');
+				w5.body.immovable = true;
+			}
 			var w4 = this.walls.create(i*(800-40), 600 - 40 - 220, 'sidewall');
 			w4.body.immovable = true;
 		}
@@ -42,7 +46,11 @@ PacmanIntro.prototype = {
 		}
 
 		this.door = game.add.sprite(800-80, 260, 'door');
+		game.physics.arcade.enable(this.door);
+		this.door.body.setSize(40,40,20,0);
 		this.door.scale.setTo(2, 2);
+		this.door.visible = false;
+		this.door.body.immovable = true;
 
 		this.player = new Player();
 		this.player.constructor(game, 100, 100);
@@ -59,6 +67,11 @@ PacmanIntro.prototype = {
 	},
 
 	update: function() {
+		if(score.value >= 50){
+			this.door.visible = true;
+		} else {
+			game.physics.arcade.collide(this.player.sprite, this.door);	
+		}
 		this.player.update();
 		game.physics.arcade.collide(this.player.sprite, this.walls);
 
