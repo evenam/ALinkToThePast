@@ -4,7 +4,7 @@ EnemyBullet.prototype = {
 	shotTimer: 0,
 	enabled: true,
 	sprite: null,
-	speed: 800,
+	speed: 500,
 
 	constructor: function(game, x, y, direction, img) {
 		this.shotTimer = 0;
@@ -29,4 +29,5 @@ EnemyBullet.prototype = {
 		this.sprite.destroy(); // for testing purposes.
 		score.loseHealth();
 	}
+
 }

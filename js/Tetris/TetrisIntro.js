@@ -73,6 +73,10 @@ TetrisIntro.prototype = {
 			game.physics.arcade.overlap(this.enemies[i].sprite, this.player.sprite, this.player.onHit);
 			this.enemies[i].update();
 			this.enemies[i].sprite.bringToTop();
+
+			for(var j = 0; j < this.enemies[i].bullets.length; j++){
+				game.physics.arcade.overlap(this.enemies[i].bullets[j].sprite, this.player.sprite, this.player.onHit);
+			}
 		}
 		this.player.sprite.bringToTop();
 
