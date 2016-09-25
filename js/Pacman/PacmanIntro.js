@@ -75,6 +75,6 @@ PacmanIntro.prototype = {
 			}
 		}
 
-		score.draw(30, 30);
+		score.draw();
 	}
 }
