@@ -159,6 +159,9 @@ Player.prototype = {
 		pl.sprite.body.velocity.x = 400*Math.cos(dir);
 		pl.sprite.body.velocity.y = 400*Math.sin(dir);
 
+		e.sprite.body.velocity.x = -400*Math.cos(dir);
+		e.sprite.body.velocity.y = -400*Math.sin(dir);
+
 		pl.isHit = 20;
 
 		score.loseHealth();

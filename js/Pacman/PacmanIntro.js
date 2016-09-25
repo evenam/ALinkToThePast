@@ -46,7 +46,7 @@ PacmanIntro.prototype = {
 
 		for(var i = 0; i < 5; i++){
 			var en = new Enemy();
-			en.constructor(game, 350 + Math.floor(Math.random() * 400), 150 + Math.floor(Math.random() * 400), this.player, 1);
+			en.constructor(game, 750 + Math.floor(Math.random() * 0), (600-80)/7*i + 2/7*(600-80) + Math.floor(Math.random() * 0), this.player, 1);
 			this.enemies.push(en);
 		}
 

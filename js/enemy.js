@@ -28,9 +28,9 @@ Enemy.prototype = {
 		this.type = type;
 		this.enabled = true;
 		if (type === 1) 
-			this.speed = 200;	 
+			this.speed = 150;	 
 		else 
-			this.speed = 150;	
+			this.speed = 110;	
 	},
 
 	update: function() {
