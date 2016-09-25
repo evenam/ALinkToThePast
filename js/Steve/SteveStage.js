@@ -15,8 +15,12 @@ SteveStage.prototype = {
 
 		this.steve = new Steve();
 		this.steve.constructor(this.game, this.player);
-
 		this.player.sprite.body.collideWorldBounds = true;
+		//music = new Phaser.Sound(game,'sv_track',1,true);
+
+		//music.play();
+
+		score.constructor();
 	},
 
 	update: function() {
@@ -36,6 +40,14 @@ SteveStage.prototype = {
 				return e.anim.isPlaying;
 			});
 		}
+
+		if (this.steve.bullet && (this.player.isHit === 0)) {
+			if (condition) {
+				this.player.onHit(this.steve.bullet.sprite, this.player.sprite);
+			}
+		}
+
+		score.draw();
 	}
 
 }
