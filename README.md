@@ -6,4 +6,4 @@ Checkout the game [here].
 By: Alex Fontenot, Krista Zabicki, Connor Stanford, Everette Moser, and Spencer Bogran.
 
 
-[here]: <http://xstgx.com/game2/>
+[here]: <https://evenam.github.io/ALinkToThePast/>
